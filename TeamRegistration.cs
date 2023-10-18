@@ -8,10 +8,12 @@ namespace Tournament_Tracker
 {
     internal class TeamRegistration
     {
-        private string registrationID = "";
-        private string PlayerID = "";
-        private string TeamID = "";
+        private int teamRegistrationID;
+        private int playerID;
+        private int teamID;
 
-        public string RegistrationID { get => registrationID; set => registrationID = value; }
+        public int TeamRegistrationID { get => teamRegistrationID; set => teamRegistrationID = value; }
+        public int PlayerID { get => playerID; set => playerID = value; }
+        public int TeamID { get => teamID; set => teamID = value; }
     }
 }
