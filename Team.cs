@@ -8,5 +8,10 @@ namespace Tournament_Tracker
 {
     internal class Team
     {
+        private string teamID = "";
+        private string name = "";
+
+        public string TeamID { get => teamID; set => teamID = value; }
+        public string Name { get => name; set => name = value; }
     }
 }

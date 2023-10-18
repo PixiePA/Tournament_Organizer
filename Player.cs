@@ -11,6 +11,7 @@ namespace Tournament_Tracker
         private int wins = 0;
         private Rank rank = Rank.None;
 
+        public string PlayerID { get => id; set => id = value; }
         public int Wins { get => wins; set => wins = value; }
         public Rank Rank { get => rank; set => rank = value; }
 

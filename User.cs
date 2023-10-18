@@ -10,6 +10,7 @@ namespace Tournament_Tracker
     {
         private string name = "";
         private string email = "";
+        protected string id = "";
 
         public string Name { get => name; protected set => name = value; }
         public string Email { get => email; protected set => email = value; }
