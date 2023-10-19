@@ -1,3 +1,6 @@
+using Microsoft.IdentityModel.Tokens;
+using System.Reflection.Metadata.Ecma335;
+
 namespace Tournament_Tracker
 {
     internal static class Program
@@ -8,13 +11,11 @@ namespace Tournament_Tracker
         [STAThread]
         static void Main()
         {
-            TOContext context = new TOContext();
+            DatabaseManager.context.Database.EnsureCreated();
 
-            context.Database.EnsureCreated();
+            DatabaseManager.context.Teams.Find(1).Remove();
 
-            context.Players.Add(new Player("name", 0, 0, "email"));
-
-            context.SaveChanges();
+            DatabaseManager.Save();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
