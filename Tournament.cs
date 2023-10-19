@@ -15,15 +15,18 @@ namespace Tournament_Tracker
         public int TournamentID { get => tournamentID; set => tournamentID = value; }
         public string TournamentName { get => tournamentName; set => tournamentName = value; }
         internal List<Player> Placements { get => placements; set => placements = value; }
-        public Player Winner()
+        public Player Winner
         {
-            if (placements.Count > 0)
+            get
             {
-                return placements[0];
-            }
-            else
-            {
-                throw new NullReferenceException("Tournament has not been concluded");
+                if (placements.Count > 0)
+                {
+                    return placements[0];
+                }
+                else
+                {
+                    return null;
+                }
             }
 
         }
