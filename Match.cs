@@ -13,7 +13,6 @@ namespace Tournament_Tracker
         private int matchID;
         private int registrationID_A;
         private int registrationID_B;
-        private int bracketID;
         private int[] score = new int[2];
         private int maxRounds;
         private bool playAll = false;
@@ -21,7 +20,6 @@ namespace Tournament_Tracker
         public int MatchID { get => matchID; set => matchID = value; }
         public int RegistrationID_A { get => registrationID_A; set => registrationID_A = value; }
         public int RegistrationID_B { get => registrationID_B; set => registrationID_B = value; }
-        public int BracketID { get => bracketID; set => bracketID = value; }
         public int[] Score { get => score; set => score = value; }
         public int MaxRounds { get => maxRounds; set => maxRounds = value; }
         public bool PlayAll { get => playAll; set => playAll = value; }
