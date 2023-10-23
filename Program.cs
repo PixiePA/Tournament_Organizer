@@ -12,8 +12,11 @@ namespace Tournament_Tracker
         static void Main()
         {
             DatabaseManager.context.Database.EnsureCreated();
+            
+            //This is test code to test if composite primary keys are working
+            /*TeamRegistration newRegistration = new TeamRegistration() { PlayerID = 4, TeamID = 2 };
 
-            DatabaseManager.context.Teams.Find(1).Remove();
+            DatabaseManager.context.TeamRegistrations.Add(newRegistration);*/
 
             DatabaseManager.Save();
             // To customize application configuration such as set high DPI settings or default font,
