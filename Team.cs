@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Tournament_Tracker
         private string name = "";
 
         public int TeamID { get => teamID; set => teamID = value; }
+        [Required]
         public string Name { get => name; set => name = value; }
 
         public void Remove()

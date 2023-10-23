@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing.Text;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Tournament_Tracker
 {
-    internal abstract class Tournament
+    internal class Tournament
     {
         private int tournamentID;
         private string tournamentName = "";
@@ -16,10 +18,11 @@ namespace Tournament_Tracker
         private TournamentType tournamentType;
 
         public int TournamentID { get => tournamentID; set => tournamentID = value; }
+        [Required]
         public string TournamentName { get => tournamentName; set => tournamentName = value; }
-        public List<int> Placements { get => placements; set => placements = value; }
-        public List<int> Brackets { get => brackets; set => brackets = value; }
-        abstract public TournamentType TournamentType { get; }
+        public int[] Placements { get => placements.ToArray(); set => placements = new List<int>(value); }
+        public int[] Brackets { get => brackets.ToArray(); set => brackets = new List<int>(value); }
+        //abstract public TournamentType TournamentType { get; }
 
         public int Winner
         {
@@ -35,7 +38,7 @@ namespace Tournament_Tracker
 
         }
 
-        public abstract void PlaySets();
+        //public abstract void PlaySets();
     }
 
     enum TournamentType

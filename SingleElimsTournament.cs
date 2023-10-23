@@ -8,11 +8,11 @@ namespace Tournament_Tracker
 {
     internal class SingleElimsTournament : Tournament
     {
-        public override TournamentType TournamentType { get=>TournamentType.SingleElims;}
+        /*public override TournamentType TournamentType { get=>TournamentType.SingleElims;}
 
         public override void PlaySets()
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

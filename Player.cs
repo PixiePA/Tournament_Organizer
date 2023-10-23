@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +13,14 @@ namespace Tournament_Tracker
     {
         private int wins = 0;
         private int losses = 0;
+        
 
         public int PlayerID { get => id; set => id = value; }
         public int Wins { get => wins; set => wins = value; }
         public int Losses { get => losses; set => losses = value; }
+
+
+
 
         public Player() { }
 
