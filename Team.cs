@@ -77,8 +77,8 @@ namespace Tournament_Tracker
             }
             else
             {
-                newRegistration.PlayerID = player.PlayerID;
-                newRegistration.TeamID = teamID;
+                newRegistration.Player = player;
+                newRegistration.Team = this;
                 DatabaseManager.context.TeamRegistrations.Add(newRegistration);
                 DatabaseManager.Save();
             }

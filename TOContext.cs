@@ -13,8 +13,11 @@ namespace Tournament_Tracker
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamRegistration> TeamRegistrations { get; set; }
-        //public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<TournamentRegistration> TournamentRegistrations {get; set;}
+        public DbSet<Bracket> Brackets { get; set; }
+        public DbSet<MatchRegistration> MatchRegistrations { get; set; }
+        public DbSet<Match> Matches { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,16 +26,6 @@ namespace Tournament_Tracker
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<Tournament>()
-                .Property(e => e.Brackets)
-                .HasConversion(v => string.Join(',', v), v => Array.ConvertAll<string, int>(v.Split(',', StringSplitOptions.RemoveEmptyEntries), r => Convert.ToInt32(r)))
-                ;
-            modelBuilder.Entity<Tournament>()
-                .Property(e => e.Placements)
-                .HasConversion(v => string.Join(',', v), v => Array.ConvertAll<string, int>(v.Split(',', StringSplitOptions.RemoveEmptyEntries), r => Convert.ToInt32(r)))
-                ;
-
             base.OnModelCreating(modelBuilder);
         }
     }

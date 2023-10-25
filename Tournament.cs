@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,27 +14,32 @@ namespace Tournament_Tracker
     {
         private int tournamentID;
         private string tournamentName = "";
-        private List<int> placements = new List<int>();
-        private List<int> brackets = new List<int>();
         private TournamentType tournamentType;
 
         public int TournamentID { get => tournamentID; set => tournamentID = value; }
+
         [Required]
         public string TournamentName { get => tournamentName; set => tournamentName = value; }
-        public int[] Placements { get => placements.ToArray(); set => placements = new List<int>(value); }
-        public int[] Brackets { get => brackets.ToArray(); set => brackets = new List<int>(value); }
+        [NotMapped]
+        public List<TournamentRegistration> Placements 
+        {
+            get
+            {
+                IEnumerable<TournamentRegistration> sortedRegistrations =
+                    from registrations in DatabaseManager.context.TournamentRegistrations
+                    where registrations.TournamentID == tournamentID
+                    orderby registrations.Wins
+                    select registrations;
+                return sortedRegistrations.ToList();
+            }
+        }
         //abstract public TournamentType TournamentType { get; }
 
         public int Winner
         {
             get
             {
-                if (placements.Count > 0)
-                {
-                    return placements[0];
-                }
-
-                return -1;
+                throw new NotImplementedException();
             }
 
         }

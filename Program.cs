@@ -18,6 +18,12 @@ namespace Tournament_Tracker
 
             DatabaseManager.context.TeamRegistrations.Add(newRegistration);*/
 
+            //This is test code to test if team registration works properly
+            /*Player newPlayer = new Player("testPlayer", 1, 1, "testEmail");
+            Team newTeam = new Team() { Name = "testTeam" };
+
+            newTeam.RegisterToTeam(newPlayer);*/
+
             DatabaseManager.Save();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

@@ -12,6 +12,8 @@ namespace Tournament_Tracker
         private List<int> tournamentRegistrations = new List<int>();
         private List<int> matches = new List<int>();
 
+        public int BracketID { get => bracketID; set => bracketID = value; }
+
         public List<Match> GetMatches()
         {
             throw new NotImplementedException();
