@@ -1,6 +1,3 @@
-using Microsoft.IdentityModel.Tokens;
-using System.Reflection.Metadata.Ecma335;
-
 namespace Tournament_Tracker
 {
     internal static class Program
@@ -12,7 +9,7 @@ namespace Tournament_Tracker
         static void Main()
         {
             DatabaseManager.context.Database.EnsureCreated();
-            
+
             //This is test code to test if composite primary keys are working
             /*TeamRegistration newRegistration = new TeamRegistration() { PlayerID = 4, TeamID = 2 };
 

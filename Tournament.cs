@@ -1,13 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tournament_Tracker
 {
@@ -23,7 +16,7 @@ namespace Tournament_Tracker
         public string TournamentName { get => tournamentName; set => tournamentName = value; }
 
         [NotMapped]
-        public List<TournamentRegistration> Placements 
+        public List<TournamentRegistration> Placements
         {
             get
             {
@@ -35,7 +28,6 @@ namespace Tournament_Tracker
             }
         }
 
-        [NotMapped]
         public List<TournamentRegistration> AllRegistrants
         {
             get
@@ -43,11 +35,11 @@ namespace Tournament_Tracker
                 IEnumerable<TournamentRegistration> allRegistrations =
                     from registrations in DatabaseManager.context.TournamentRegistrations
                     where registrations.TournamentID == tournamentID
-                    orderby registrations.TeamID
                     select registrations;
                 return allRegistrations.ToList();
             }
         }
+        [NotMapped]
         //abstract public TournamentType TournamentType { get; }
 
         public int Winner

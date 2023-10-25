@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Tournament_Tracker
 {
@@ -34,9 +29,9 @@ namespace Tournament_Tracker
             DatabaseManager.Save();
         }
 
-        public List<Player> GetPlayers() 
+        public List<Player> GetPlayers()
         {
-            List <Player> playerList = new List<Player>();
+            List<Player> playerList = new List<Player>();
             IEnumerable<int> playerRegistations =
                 from playerRegistration in DatabaseManager.context.TeamRegistrations
                 where playerRegistration.TeamID == TeamID
@@ -61,7 +56,7 @@ namespace Tournament_Tracker
             }
             return playerList;
         }
-        
+
         public void RegisterToTeam(Player player)
         {
             TeamRegistration newRegistration = new TeamRegistration();

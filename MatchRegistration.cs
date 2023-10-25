@@ -1,15 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tournament_Tracker
 {
-    [PrimaryKey (nameof(IsAlpha), nameof(MatchID))]
+    [PrimaryKey(nameof(IsAlpha), nameof(MatchID))]
     internal class MatchRegistration
     {
         private int teamID;
@@ -17,10 +11,11 @@ namespace Tournament_Tracker
         private bool isAlpha;
 
         //Foreign key for player to be in match
-        [ForeignKey(nameof(Player))]
+        [ForeignKey(nameof(Team))]
         public int TeamID { get => teamID; set => teamID = value; }
         public Team Team { get; set; }
 
+        //Foreign key for match to play
         [ForeignKey(nameof(Match))]
         public int MatchID { get => matchID; set => matchID = value; }
         public Match Match { get; set; }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tournament_Tracker
 {
@@ -124,7 +117,7 @@ namespace Tournament_Tracker
             Random rnd = new Random();
             while (!IsMatchOver())
             {
-                if (rnd.NextInt64(0,10) < 5)
+                if (rnd.NextInt64(0, 10) < 5)
                 {
                     ReportAWin();
                 }
@@ -156,7 +149,7 @@ namespace Tournament_Tracker
         {
             SetupMatch(teamA, teamB, roundPosition, roundNumber, maxRounds, playAllRounds);
 
-            
+
         }
 
         public Match(TeamRegistration RegistrationA, TeamRegistration RegistrationB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)

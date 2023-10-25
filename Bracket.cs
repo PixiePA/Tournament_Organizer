@@ -1,27 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tournament_Tracker
 {
     internal class Bracket
     {
         private int bracketID;
-        private List<int> tournamentRegistrations = new List<int>();
-        private List<int> matches = new List<int>();
+
+        private int currentRound = 1;
 
         public int BracketID { get => bracketID; set => bracketID = value; }
 
-        public List<Match> GetMatches()
+        public int CurrentRound { get => currentRound; set => currentRound = value; }
+
+        [NotMapped]
+        public List<Match> Matches
         {
-            throw new NotImplementedException();
+            get
+            {
+                IEnumerable<Match> matches =
+                    from match in DatabaseManager.context.Matches
+                    where match.BracketID == bracketID
+                    select match;
+                return matches.ToList();
+            }
+        }
+
+        public List<Match> AllMatchesInRound(int round)
+        {
+            IEnumerable<Match> matches =
+                    from match in Matches
+                    where match.RoundNumber == round
+                    select match;
+            return matches.ToList();
         }
 
         public bool AllMatchesFinished()
         {
-            foreach (Match match in GetMatches())
+            foreach (Match match in Matches)
             {
                 if (match.IsMatchOver())
                 {
@@ -31,6 +46,8 @@ namespace Tournament_Tracker
 
             return false;
         }
+
+
 
         public bool SeedBracket()
         {
