@@ -8,9 +8,16 @@ namespace Tournament_Tracker
 
         private int currentRound = 1;
 
+        private int losersBracketID = -1;
+
         public int BracketID { get => bracketID; set => bracketID = value; }
 
         public int CurrentRound { get => currentRound; set => currentRound = value; }
+
+        [ForeignKey(nameof(LosersBracket))]
+        public int LosersBracketID { get => losersBracketID; set => losersBracketID = value; }
+
+        public LosersBracket LosersBracket { get; set; }
 
         [NotMapped]
         public List<Match> Matches
