@@ -11,24 +11,18 @@ namespace Tournament_Tracker
 {
     internal class Player : User
     {
-        private int wins = 0;
-        private int losses = 0;
+        private int points = 0;
         
 
         public int PlayerID { get => id; set => id = value; }
-        public int Wins { get => wins; set => wins = value; }
-        public int Losses { get => losses; set => losses = value; }
-
-
-
+        public int Points { get => points; set => points = value; }
 
         public Player() { }
 
-        public Player(string name, int wins, int losses, string email)
+        public Player(string name, int points, string email)
         {
             this.Name = name;
-            this.wins = wins;
-            this.losses = losses;
+            this.points = points;
             this.Email = email;
         }
     }

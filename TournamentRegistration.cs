@@ -17,22 +17,24 @@ namespace Tournament_Tracker
         private int bracketID;
         private int wins;
 
-        [ForeignKey (nameof(Team))]
         [Required]
+        [ForeignKey (nameof(Team))]
         public int TeamID { get => teamID; set => teamID = value; }
 
-        [ForeignKey (nameof (Tournament))]
+
+        [ForeignKey (nameof(Tournament))]
         [Required]
         public int TournamentID { get => tournamentID; set => tournamentID = value; }
 
-        [ForeignKey (nameof(BracketID))]
+        [ForeignKey (nameof(Bracket))]
         public int BracketID { get => bracketID; set => bracketID = value; }
-
-        public Player Team { get; set; }
 
         public Tournament Tournament { get; set; }
 
+        public Team Team { get; set; }
+
         public Bracket Bracket { get; set; }
+
         public int Wins { get => wins; set => wins = value; }
     }
 }
