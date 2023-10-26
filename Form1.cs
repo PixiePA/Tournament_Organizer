@@ -6,5 +6,11 @@ namespace Tournament_Tracker
         {
             InitializeComponent();
         }
+
+        private void btnPlayerRegistration_Click(object sender, EventArgs e)
+        {
+            PlayerRegistrationForm prForm = new PlayerRegistrationForm();
+            prForm.ShowDialog();
+        }
     }
 }
