@@ -2,7 +2,7 @@
 
 namespace Tournament_Tracker
 {
-    internal class Team
+    public class Team
     {
         private int teamID;
         private string name = "";

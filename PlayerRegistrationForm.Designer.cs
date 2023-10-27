@@ -176,6 +176,7 @@
             Margin = new Padding(4);
             Name = "PlayerRegistrationForm";
             Text = "Ultimate Flipper - Player Registration";
+            FormClosing += PlayerRegistrationForm_FormClosing;
             Load += PlayerRegistrationForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);

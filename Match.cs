@@ -2,7 +2,7 @@
 
 namespace Tournament_Tracker
 {
-    internal class Match
+    public class Match
     {
         private int matchID;
         private int scoreA;

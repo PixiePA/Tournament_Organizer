@@ -1,6 +1,9 @@
-﻿namespace Tournament_Tracker
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Configuration;
+
+namespace Tournament_Tracker
 {
-    internal class Player : User
+    public class Player : User
     {
         private int points = 0;
 
@@ -16,5 +19,11 @@
             this.points = points;
             this.Email = email;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+
     }
 }

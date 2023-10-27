@@ -295,6 +295,7 @@
             Margin = new Padding(4);
             Name = "TeamRegistrationForm";
             Text = "Ultimate Flipper - Team Registration";
+            FormClosing += TeamRegistrationForm_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Tournament_Tracker
 {
-    public partial class TeamRegistrationForm : Form
+    internal partial class TeamRegistrationForm : Form
     {
         // Initialise number of players and the current button
         private int numOfPlayers;
@@ -128,8 +128,21 @@ namespace Tournament_Tracker
             PlayerDuplicates();
         }
 
-        // Resets all form values to default
-        private void ResetFormState()
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            // Create team with the players selected
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+            // Load main menu and close form
+            Form1 menu = new Form1();
+            menu.ShowDialog();
+            Close();
+        }
+
+        private void TeamRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ResetButtons();
             tbTeamName.Text = string.Empty;
@@ -138,21 +151,5 @@ namespace Tournament_Tracker
             cbPlayer3.SelectedIndex = -1;
             cbPlayer4.SelectedIndex = -1;
         }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            // Create team with the players selected
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            // Reset the form
-            ResetFormState();
-
-            // Load main menu
-            Form1 menu = new Form1();
-            menu.ShowDialog();
-        }
-
     }
 }

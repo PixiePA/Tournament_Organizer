@@ -250,6 +250,7 @@
             Margin = new Padding(4);
             Name = "TournamentCreationForm";
             Text = "Ultimate Flipper - Tournament Creation";
+            FormClosing += TournamentCreationForm_FormClosing;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
             PerformLayout();

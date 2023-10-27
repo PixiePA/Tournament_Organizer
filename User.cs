@@ -2,7 +2,7 @@
 
 namespace Tournament_Tracker
 {
-    internal class User
+    public class User
     {
         private string name = "";
         private string email = "";

@@ -2,7 +2,7 @@
 
 namespace Tournament_Tracker
 {
-    internal class TOContext : DbContext
+    public class TOContext : DbContext
     {
         public DbSet<Player> Players { get; set; }
         public DbSet<Team> Teams { get; set; }

@@ -62,15 +62,6 @@ namespace Tournament_Tracker
             btnSubmit.Visible = true;
         }
 
-        // Resets all form values to default
-        private void ResetFormState()
-        {
-            lbTeamSelection.Items.Clear();
-            lbTeamFinal.Items.Clear();
-            cbTournamentType.SelectedIndex = -1;
-            tbTournamentName.Text = string.Empty;
-        }
-
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Create tournament with tournament name, type and teams selected
@@ -78,12 +69,18 @@ namespace Tournament_Tracker
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Reset the form
-            ResetFormState();
-
-            // Load main menu
+            // Load main menu and close form
             Form1 menu = new Form1();
             menu.ShowDialog();
+            Close();
+        }
+
+        private void TournamentCreationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            lbTeamSelection.Items.Clear();
+            lbTeamFinal.Items.Clear();
+            cbTournamentType.SelectedIndex = -1;
+            tbTournamentName.Text = string.Empty;
         }
     }
 }

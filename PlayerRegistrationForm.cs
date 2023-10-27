@@ -29,14 +29,17 @@ namespace Tournament_Tracker
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Empty out text fields and combo box.
-            tbPlayerEmail.Text = string.Empty;
-            tbPlayerName.Text = string.Empty;
-            cbTeams.Items.Clear();
-
             // Load main menu
             Form1 menu = new Form1();
             menu.ShowDialog();
+            Close();
+        }
+
+        private void PlayerRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tbPlayerEmail.Text = string.Empty;
+            tbPlayerName.Text = string.Empty;
+            cbTeams.Items.Clear();
         }
     }
 }
