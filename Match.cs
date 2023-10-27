@@ -56,27 +56,32 @@ namespace Tournament_Tracker
         public void ReportAWin()
         {
             scoreA++;
+            DatabaseManager.UpdateEntity(this);
         }
 
         public void ReportBWin()
         {
             scoreB++;
+            DatabaseManager.UpdateEntity(this);
         }
 
         public void ReportAScore(int score)
         {
             this.scoreA = score;
+            DatabaseManager.UpdateEntity(this);
         }
 
         public void ReportBScore(int score)
         {
             this.scoreB = score;
+            DatabaseManager.UpdateEntity(this);
         }
 
         public void ReportScore(int scoreA, int scoreB)
         {
             this.scoreA = scoreA;
             this.scoreB = scoreB;
+            DatabaseManager.UpdateEntity(this);
         }
 
         //Check if match is concluded
@@ -106,7 +111,7 @@ namespace Tournament_Tracker
         {
             if (IsMatchOver())
             {
-                return scoreA > scoreB ? scoreA : scoreB;
+                return scoreA > scoreB ? TeamA.TeamID : TeamB.TeamID;
             }
             else throw new InvalidOperationException("Match is still ongoing");
         }
@@ -136,6 +141,8 @@ namespace Tournament_Tracker
             this.playAll = playAllRounds;
             this.roundNumber = roundNumber;
             this.roundPosition = roundPosition;
+            DatabaseManager.context.Matches.Add(this);
+            DatabaseManager.Save();
 
             throw new NotImplementedException();
         }
@@ -148,13 +155,30 @@ namespace Tournament_Tracker
         public Match(Team teamA, Team teamB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
         {
             SetupMatch(teamA, teamB, roundPosition, roundNumber, maxRounds, playAllRounds);
-
-
         }
 
-        public Match(TeamRegistration RegistrationA, TeamRegistration RegistrationB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
+        public Match(TournamentRegistration RegistrationA, TournamentRegistration RegistrationB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
         {
             SetupMatch(RegistrationA.Team, RegistrationB.Team, roundPosition, roundNumber, maxRounds, playAllRounds);
+        }
+
+        public Match(TournamentRegistration RegistrationA, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
+        {
+            MatchRegistration registrationA = new MatchRegistration() { Team = RegistrationA.Team, IsAlpha = true, Match = this };
+            this.maxRounds = maxRounds;
+            this.playAll = playAllRounds;
+            this.roundNumber = roundNumber;
+            this.roundPosition = roundPosition;
+
+            if (playAllRounds)
+            {
+                ReportAScore(maxRounds);
+            }
+            else
+            {
+                ReportAScore((maxRounds+1)/2);
+            }
+            DatabaseManager.UpdateEntity(this);
         }
 
     }
