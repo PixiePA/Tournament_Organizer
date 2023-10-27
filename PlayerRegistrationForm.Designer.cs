@@ -175,7 +175,7 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "PlayerRegistrationForm";
-            Text = "Supreme Flipper - Player Registration";
+            Text = "Ultimate Flipper - Player Registration";
             Load += PlayerRegistrationForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);

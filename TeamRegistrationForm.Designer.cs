@@ -257,11 +257,12 @@
             lblError.AutoSize = true;
             lblError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(289, 427);
+            lblError.Location = new Point(261, 421);
             lblError.Name = "lblError";
-            lblError.Size = new Size(206, 15);
+            lblError.Size = new Size(262, 15);
             lblError.TabIndex = 27;
-            lblError.Text = "You can't select the same player twice";
+            lblError.Text = "You can't select the same player more than once";
+            lblError.Visible = false;
             // 
             // TeamRegistrationForm
             // 
@@ -293,7 +294,7 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "TeamRegistrationForm";
-            Text = "TeamRegistrationForm";
+            Text = "Ultimate Flipper - Team Registration";
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
             PerformLayout();

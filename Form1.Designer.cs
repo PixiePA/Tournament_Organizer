@@ -31,6 +31,8 @@
             lblTitle = new Label();
             btnPlayerRegistration = new Button();
             pbTitleImage = new PictureBox();
+            btnTeamRegistration = new Button();
+            btnTournamentCreation = new Button();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -65,18 +67,40 @@
             pbTitleImage.TabIndex = 3;
             pbTitleImage.TabStop = false;
             // 
+            // btnTeamRegistration
+            // 
+            btnTeamRegistration.Location = new Point(298, 220);
+            btnTeamRegistration.Name = "btnTeamRegistration";
+            btnTeamRegistration.Size = new Size(200, 50);
+            btnTeamRegistration.TabIndex = 4;
+            btnTeamRegistration.Text = "Team Registration";
+            btnTeamRegistration.UseVisualStyleBackColor = true;
+            btnTeamRegistration.Click += btnTeamRegistration_Click;
+            // 
+            // btnTournamentCreation
+            // 
+            btnTournamentCreation.Location = new Point(298, 294);
+            btnTournamentCreation.Name = "btnTournamentCreation";
+            btnTournamentCreation.Size = new Size(200, 50);
+            btnTournamentCreation.TabIndex = 5;
+            btnTournamentCreation.Text = "Tournament Creation";
+            btnTournamentCreation.UseVisualStyleBackColor = true;
+            btnTournamentCreation.Click += btnTournamentCreation_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
+            Controls.Add(btnTournamentCreation);
+            Controls.Add(btnTeamRegistration);
             Controls.Add(pbTitleImage);
             Controls.Add(btnPlayerRegistration);
             Controls.Add(lblTitle);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "Form1";
-            Text = "Supreme Flipper - Main Menu";
+            Text = "Ultimate Flipper - Main Menu";
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -87,5 +111,7 @@
         private Label lblTitle;
         private Button btnPlayerRegistration;
         private PictureBox pbTitleImage;
+        private Button btnTeamRegistration;
+        private Button btnTournamentCreation;
     }
 }

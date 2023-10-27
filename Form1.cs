@@ -12,5 +12,17 @@ namespace Tournament_Tracker
             PlayerRegistrationForm prForm = new PlayerRegistrationForm();
             prForm.ShowDialog();
         }
+
+        private void btnTeamRegistration_Click(object sender, EventArgs e)
+        {
+            TeamRegistrationForm trForm = new TeamRegistrationForm();
+            trForm.ShowDialog();
+        }
+
+        private void btnTournamentCreation_Click(object sender, EventArgs e)
+        {
+            TournamentCreationForm tcForm = new TournamentCreationForm();
+            tcForm.ShowDialog();
+        }
     }
 }

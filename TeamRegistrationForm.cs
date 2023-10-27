@@ -153,6 +153,6 @@ namespace Tournament_Tracker
             Form1 menu = new Form1();
             menu.ShowDialog();
         }
-        
+
     }
 }
