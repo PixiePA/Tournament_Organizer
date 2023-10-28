@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Tournament_Tracker
 {
-    [PrimaryKey(nameof(BracketID))]
     public class LosersBracket : Bracket
     {
         private int winnersBracketID;
@@ -18,6 +17,9 @@ namespace Tournament_Tracker
 
         public Bracket WinnersBracket { get; set; }
 
+        [NotMapped]
+
+        
 
     }
 }

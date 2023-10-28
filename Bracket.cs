@@ -65,6 +65,19 @@ namespace Tournament_Tracker
             }
         }
 
+        public TournamentRegistration Winner
+        {
+            get
+            {
+                if (IsFinished)
+                {
+                    return AllWinnersInRound(CurrentRound).First();
+                }
+
+                throw new InvalidOperationException("Bracket is not yet resolved");
+            }
+        }
+
         public List<Match> AllMatchesInRound(int round)
         {
             IEnumerable<Match> matches =
@@ -107,52 +120,77 @@ namespace Tournament_Tracker
             Match newMatch = new Match(teamA, teamB, roundPosition, CurrentRound);
         }
 
-        public virtual void BeginNextRound()
+        public virtual bool BeginNextRound()
         {
-            CurrentRound++;
-            List<TournamentRegistration> Winners = AllWinnersInRound(CurrentRound - 1);
-            foreach (TournamentRegistration winner in Winners)
+            if (!isFinished)
             {
-                winner.Wins++;
-                DatabaseManager.UpdateEntity(winner);
-            }
-
-            //More than one competitor remaining
-            if (Winners.Count() != 1)
-            {
-                int i = 0;
-                for (i = 0; i + 1 < Winners.Count; i = 2)
-                {
-                    CreateNewMatch(Winners[i], Winners[i + 1], i / 2);
-                }
-                if (i < Winners.Count)
-                {
-                    new Match(Winners.Last(), (i + 2 / 2), currentRound);
-                }
                 
-                //If there is no losers bracket and the winners 
-                if (!hasLosersBracket && Winners.Count == 2)
+                List<TournamentRegistration> Winners = AllWinnersInRound(CurrentRound);
+                foreach (TournamentRegistration winner in Winners)
                 {
-                    isFinals = true;
+                    winner.Wins++;
+                    DatabaseManager.UpdateEntity(winner);
                 }
 
-                //Add losers of current round to losers bracket
-                if (HasLosersBracket)
+                if (!isFinals)
                 {
+                    CurrentRound++;
+                    //More than one competitor remaining
+                    if (Winners.Count() != 1)
+                    {
+                        int i = 0;
+                        for (i = 0; i + 1 < Winners.Count; i = 2)
+                        {
+                            CreateNewMatch(Winners[i], Winners[i + 1], i / 2);
+                        }
+                        if (i < Winners.Count)
+                        {
+                            new Match(Winners.Last(), (i + 2 / 2), currentRound);
+                        }
+
+                        //If there is no losers bracket, finals happen when 2 players remaining
+                        if (!hasLosersBracket && Winners.Count == 2)
+                        {
+                            isFinals = true;
+                        }
+
+                        //Add losers of current round to losers bracket
+                        if (HasLosersBracket)
+                        {
+
+                        }
+                    }
+                    //Losers bracket winner vs winner's bracket winner match still needs to be run
+                    else if (HasLosersBracket)
+                    {
+                        //Get winner of losers bracket and arrange fight with winners bracket champion
+                        IEnumerable<LosersBracket> losersBrackets =
+                            from losersbracket in DatabaseManager.context.LosersBrackets
+                            where losersbracket.WinnersBracketID == bracketID
+                            select losersbracket;
+
+                        CreateNewMatch(Winner, losersBrackets.First().Winner, 1);
+                        isFinals = true;
+                    }
+                    else
+                    {
+                        throw new Exception("I don't know how you got here. This is never meant to happen. There's some logic bug here.");
+                    }
+
                     
+                }// End of finals check
+
+                else
+                {
+                    isFinished = true;
                 }
-            }
-            //Losers bracket winner vs winner's bracket winner match still needs to be run
-            else if (!IsFinals)
-            {
-                //Get winner of losers bracket and arrange fight with winners bracket champion
-            }
-            else
-            {
-                isFinished = true;
-            }
+
+
+            }// End of finished check
 
             DatabaseManager.UpdateEntity(this);
+
+            return isFinished;
         }
     }
 }

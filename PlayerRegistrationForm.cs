@@ -30,9 +30,11 @@ namespace Tournament_Tracker
         private void btnCancel_Click(object sender, EventArgs e)
         {
             // Load main menu
-            Form1 menu = new Form1();
-            menu.ShowDialog();
+            //Form1 menu = new Form1();
             Close();
+            //menu.ShowDialog();
+            
+
         }
 
         private void PlayerRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
