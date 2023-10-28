@@ -266,7 +266,8 @@
             // 
             // TeamRegistrationForm
             // 
-            AutoScaleMode = AutoScaleMode.None;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(784, 561);
             Controls.Add(lblError);
             Controls.Add(btnCancel);
