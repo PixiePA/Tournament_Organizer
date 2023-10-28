@@ -8,5 +8,11 @@
         {
             context.SaveChanges();
         }
+
+        public static void UpdateEntity(object entity) 
+        {
+            DatabaseManager.context.Update(entity);
+            DatabaseManager.Save();
+        }
     }
 }

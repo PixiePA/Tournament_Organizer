@@ -39,17 +39,29 @@ namespace Tournament_Tracker
                 return allRegistrations.ToList();
             }
         }
-        [NotMapped]
-        //abstract public TournamentType TournamentType { get; }
 
-        public int Winner
+        public Bracket Bracket
         {
             get
             {
-                throw new NotImplementedException();
+                return
+                    (from brackets in DatabaseManager.context.Brackets
+                    where brackets.TournamentID == tournamentID
+                    select brackets).First();
+            }
+        }
+
+        public TournamentRegistration Winner
+        {
+            get
+            {
+                return Placements.First();
             }
 
         }
+        //abstract public TournamentType TournamentType { get; }
+
+
 
         //public abstract void PlaySets();
     }
