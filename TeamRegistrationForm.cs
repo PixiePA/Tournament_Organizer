@@ -15,13 +15,15 @@ namespace Tournament_Tracker
         // Initialise number of players and the current button
         private int numOfPlayers;
         private Button currentBtn;
+        private Form1 menu;
 
-        public TeamRegistrationForm()
+        public TeamRegistrationForm(Form1 menu)
         {
             InitializeComponent();
             currentBtn = btn4;
             numOfPlayers = 4;
             btn4.BackColor = SystemColors.ControlDark;
+            this.menu = menu;
         }
 
         // Handle button clicks to display number of combo boxes and highlight buttons
@@ -136,6 +138,7 @@ namespace Tournament_Tracker
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            menu.Show();
         }
 
         private void TeamRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)

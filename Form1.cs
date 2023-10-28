@@ -16,14 +16,16 @@ namespace Tournament_Tracker
 
         private void btnTeamRegistration_Click(object sender, EventArgs e)
         {
-            TeamRegistrationForm trForm = new TeamRegistrationForm();
-            trForm.ShowDialog();
+            TeamRegistrationForm trForm = new TeamRegistrationForm(this);
+            trForm.Show();
+            this.Hide();
         }
 
         private void btnTournamentCreation_Click(object sender, EventArgs e)
         {
-            TournamentCreationForm tcForm = new TournamentCreationForm();
-            tcForm.ShowDialog();
+            TournamentCreationForm tcForm = new TournamentCreationForm(this);
+            tcForm.Show();
+            this.Hide();
         }
     }
 }

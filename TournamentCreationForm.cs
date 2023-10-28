@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Tournament_Tracker
 {
     public partial class TournamentCreationForm : Form
     {
-
-        public TournamentCreationForm()
+        private Form1 menu;
+        public TournamentCreationForm(Form1 menu)
         {
             InitializeComponent();
+            this.menu = menu;
         }
 
         // Add the teams selected in the list box
@@ -69,7 +71,8 @@ namespace Tournament_Tracker
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
+            menu.Show();
         }
 
         private void TournamentCreationForm_FormClosing(object sender, FormClosingEventArgs e)
