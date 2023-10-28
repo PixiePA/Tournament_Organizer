@@ -136,10 +136,6 @@ namespace Tournament_Tracker
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-
-            // Load main menu and close form
-            Form1 menu = new Form1();
-            menu.ShowDialog();
         }
 
         private void TeamRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)

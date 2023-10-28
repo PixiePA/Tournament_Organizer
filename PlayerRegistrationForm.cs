@@ -12,9 +12,13 @@ namespace Tournament_Tracker
 {
     public partial class PlayerRegistrationForm : Form
     {
-        public PlayerRegistrationForm()
+
+        private Form1 menu;
+        public PlayerRegistrationForm(Form1 menu)
         {
+
             InitializeComponent();
+            this.menu = menu;
         }
 
         private void PlayerRegistrationForm_Load(object sender, EventArgs e)
@@ -30,10 +34,7 @@ namespace Tournament_Tracker
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-
-            // Load main menu
-            Form1 menu = new Form1();
-            menu.ShowDialog();
+            menu.Show();
         }
 
         private void PlayerRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
