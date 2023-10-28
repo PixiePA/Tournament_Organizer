@@ -7,15 +7,15 @@ namespace Tournament_Tracker
     {
         private int bracketID;
 
-        private int currentRound = 1;
+        private int currentRound = 0;
 
         private int tournamentID;
 
         private bool hasLosersBracket;
 
-        private bool isFinished;
+        private bool isFinished = false;
 
-        private bool isFinals;
+        private bool isFinals = false;
 
         public int BracketID { get => bracketID; set => bracketID = value; }
 
@@ -110,9 +110,30 @@ namespace Tournament_Tracker
             return false;
         }
 
-        public bool SeedBracket()
+        public void SeedBracket(List<TournamentRegistration> Competitors)
         {
-            throw new NotImplementedException();
+            List<TournamentRegistration> sortedCompetitors =
+                (from competitor in Competitors
+                orderby competitor.Team.AveragePoints
+                select competitor).ToList();
+
+
+            int halfSize = sortedCompetitors.Count() / 2;
+
+            List<TournamentRegistration> SeededTeams = new List<TournamentRegistration>();
+
+            for (int i = sortedCompetitors.Count() % 2 == 0 ? 0 : 1 ; i + halfSize < sortedCompetitors.Count(); i++)
+            {
+                SeededTeams.Add(sortedCompetitors[i]);
+                SeededTeams.Add(sortedCompetitors[i + halfSize]);
+            }
+
+            if (sortedCompetitors.Count() % 2 != 0)
+            {
+                SeededTeams.Add(sortedCompetitors.First());
+            }
+
+            SetupNextRound(SeededTeams);
         }
 
         public void CreateNewMatch(TournamentRegistration teamA, TournamentRegistration teamB, int roundPosition)
@@ -132,58 +153,7 @@ namespace Tournament_Tracker
                     DatabaseManager.UpdateEntity(winner);
                 }
 
-                if (!isFinals)
-                {
-                    CurrentRound++;
-                    //More than one competitor remaining
-                    if (Winners.Count() != 1)
-                    {
-                        int i = 0;
-                        for (i = 0; i + 1 < Winners.Count; i = 2)
-                        {
-                            CreateNewMatch(Winners[i], Winners[i + 1], i / 2);
-                        }
-                        if (i < Winners.Count)
-                        {
-                            new Match(Winners.Last(), (i + 2 / 2), currentRound);
-                        }
-
-                        //If there is no losers bracket, finals happen when 2 players remaining
-                        if (!hasLosersBracket && Winners.Count == 2)
-                        {
-                            isFinals = true;
-                        }
-
-                        //Add losers of current round to losers bracket
-                        if (HasLosersBracket)
-                        {
-
-                        }
-                    }
-                    //Losers bracket winner vs winner's bracket winner match still needs to be run
-                    else if (HasLosersBracket)
-                    {
-                        //Get winner of losers bracket and arrange fight with winners bracket champion
-                        IEnumerable<LosersBracket> losersBrackets =
-                            from losersbracket in DatabaseManager.context.LosersBrackets
-                            where losersbracket.WinnersBracketID == bracketID
-                            select losersbracket;
-
-                        CreateNewMatch(Winner, losersBrackets.First().Winner, 1);
-                        isFinals = true;
-                    }
-                    else
-                    {
-                        throw new Exception("I don't know how you got here. This is never meant to happen. There's some logic bug here.");
-                    }
-
-                    
-                }// End of finals check
-
-                else
-                {
-                    isFinished = true;
-                }
+                SetupNextRound(Winners);
 
 
             }// End of finished check
@@ -192,5 +162,61 @@ namespace Tournament_Tracker
 
             return isFinished;
         }
+
+        public void SetupNextRound(List<TournamentRegistration> Competitors)
+        {
+            if (!isFinals)
+            {
+                CurrentRound++;
+                //More than one competitor remaining
+                if (Competitors.Count() != 1)
+                {
+                    int i = 0;
+                    for (i = 0; i + 1 < Competitors.Count; i = 2)
+                    {
+                        CreateNewMatch(Competitors[i], Competitors[i + 1], i / 2);
+                    }
+                    if (i < Competitors.Count)
+                    {
+                        new Match(Competitors.Last(), (i + 2 / 2), currentRound);
+                    }
+
+                    //If there is no losers bracket, finals happen when 2 players remaining
+                    if (!hasLosersBracket && Competitors.Count == 2)
+                    {
+                        isFinals = true;
+                    }
+
+                    //Add losers of current round to losers bracket
+                    if (HasLosersBracket)
+                    {
+                        LosersBracket.BeginNextRound();
+                    }
+                }
+                //Losers bracket winner vs winner's bracket winner match still needs to be run
+                else if (HasLosersBracket)
+                {
+                    //Get winner of losers bracket and arrange fight with Competitors bracket champion 
+                    if (LosersBracket.isFinished)
+                    {
+                        CreateNewMatch(Winner, LosersBracket.Winner, 1);
+                        isFinals = true;
+                    }
+                }
+                else
+                {
+                    throw new Exception("I don't know how you got here. This is never meant to happen. There's some logic bug here.");
+                }
+
+
+            }// End of finals check
+
+            else
+            {
+                isFinished = true;
+            }
+        }
     }
+
+
 }

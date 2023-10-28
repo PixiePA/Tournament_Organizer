@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tournament_Tracker
 {
@@ -10,6 +11,21 @@ namespace Tournament_Tracker
         public int TeamID { get => teamID; set => teamID = value; }
         [Required]
         public string Name { get => name; set => name = value; }
+
+        [NotMapped]
+        public float AveragePoints
+        {
+            get
+            {
+                List < Player > allPlayers = GetPlayers();
+                int totalPoints = 0;
+                foreach ( Player player in allPlayers )
+                {
+                    totalPoints += player.Points;
+                }
+                return (float)totalPoints / (float)allPlayers.Count;
+            }
+        }
 
         public void Remove()
         {

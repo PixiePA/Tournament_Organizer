@@ -143,8 +143,6 @@ namespace Tournament_Tracker
             this.roundPosition = roundPosition;
             DatabaseManager.context.Matches.Add(this);
             DatabaseManager.Save();
-
-            throw new NotImplementedException();
         }
 
         public Match()
