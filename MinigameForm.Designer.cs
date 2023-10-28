@@ -240,8 +240,7 @@
             // 
             // MinigameForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(784, 561);
             Controls.Add(lblWinner);
             Controls.Add(pbCoinStar);

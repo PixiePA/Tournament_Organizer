@@ -101,7 +101,7 @@ namespace Tournament_Tracker
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void MinigameForm_FormClosing(object sender, FormClosingEventArgs e)

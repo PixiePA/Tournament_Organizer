@@ -157,8 +157,7 @@
             // 
             // PlayerRegistrationForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 21F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(784, 561);
             Controls.Add(btnCancel);
             Controls.Add(btnSubmit);
