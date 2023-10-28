@@ -134,6 +134,24 @@ namespace Tournament_Tracker
             }
 
             SetupNextRound(SeededTeams);
+
+            DatabaseManager.UpdateEntity(this);
+        }
+
+        public void AddLosersBracket()
+        {
+            if (hasLosersBracket)
+            {
+                throw new InvalidOperationException("Already has a losers bracket");
+            }
+
+            LosersBracket newLosersBracket = new LosersBracket() { TournamentID = this.tournamentID, WinnersBracket = this};
+
+            DatabaseManager.context.LosersBrackets.Add(newLosersBracket);
+            DatabaseManager.Save();
+
+            hasLosersBracket = true;
+
         }
 
         public void CreateNewMatch(TournamentRegistration teamA, TournamentRegistration teamB, int roundPosition)
