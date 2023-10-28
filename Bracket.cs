@@ -13,11 +13,19 @@ namespace Tournament_Tracker
 
         private bool hasLosersBracket;
 
+        private bool isFinished;
+
+        private bool isFinals;
+
         public int BracketID { get => bracketID; set => bracketID = value; }
 
         public int CurrentRound { get => currentRound; set => currentRound = value; }
 
         public bool HasLosersBracket { get => hasLosersBracket; set => hasLosersBracket = value; }
+
+        public bool IsFinished { get => isFinished; set => isFinished = value; }
+
+        public bool IsFinals { get => isFinals; set => isFinals = value; }
 
         [ForeignKey(nameof(Tournament))]
         [Required]
@@ -35,6 +43,25 @@ namespace Tournament_Tracker
                     where match.BracketID == bracketID
                     select match;
                 return matches.ToList();
+            }
+        }
+
+        public LosersBracket LosersBracket
+        {
+            get
+            {
+                IEnumerable<LosersBracket> LosersBracket =
+                    from Brackets in DatabaseManager.context.LosersBrackets
+                    where Brackets.WinnersBracketID == BracketID
+                    select Brackets;
+                if (LosersBracket.Any())
+                {
+                    return LosersBracket.First();
+                }
+                else
+                {
+                    throw new InvalidOperationException("No losers bracket found");
+                }
             }
         }
 
@@ -80,19 +107,52 @@ namespace Tournament_Tracker
             Match newMatch = new Match(teamA, teamB, roundPosition, CurrentRound);
         }
 
-        public virtual void NextRound()
+        public virtual void BeginNextRound()
         {
             CurrentRound++;
             List<TournamentRegistration> Winners = AllWinnersInRound(CurrentRound - 1);
-            int i = 0;
-            for (i = 0; i+1 < Winners.Count; i=2)
+            foreach (TournamentRegistration winner in Winners)
             {
-                CreateNewMatch(Winners[i], Winners[i+1], i/2);
+                winner.Wins++;
+                DatabaseManager.UpdateEntity(winner);
             }
-            if (i < Winners.Count)
+
+            //More than one competitor remaining
+            if (Winners.Count() != 1)
             {
-                new Match(Winners[Winners.Count - 1], (i+2/2), currentRound);
+                int i = 0;
+                for (i = 0; i + 1 < Winners.Count; i = 2)
+                {
+                    CreateNewMatch(Winners[i], Winners[i + 1], i / 2);
+                }
+                if (i < Winners.Count)
+                {
+                    new Match(Winners.Last(), (i + 2 / 2), currentRound);
+                }
+                
+                //If there is no losers bracket and the winners 
+                if (!hasLosersBracket && Winners.Count == 2)
+                {
+                    isFinals = true;
+                }
+
+                //Add losers of current round to losers bracket
+                if (HasLosersBracket)
+                {
+                    
+                }
             }
+            //Losers bracket winner vs winner's bracket winner match still needs to be run
+            else if (!IsFinals)
+            {
+                //Get winner of losers bracket and arrange fight with winners bracket champion
+            }
+            else
+            {
+                isFinished = true;
+            }
+
+            DatabaseManager.UpdateEntity(this);
         }
     }
 }

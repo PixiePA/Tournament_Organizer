@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Tournament_Tracker
 {
     [PrimaryKey(nameof(BracketID))]
-    internal class LosersBracket : Bracket
+    public class LosersBracket : Bracket
     {
         private int winnersBracketID;
 
