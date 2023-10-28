@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tournament_Tracker
 {
-    internal class Bracket
+    public class Bracket
     {
         private int bracketID;
 

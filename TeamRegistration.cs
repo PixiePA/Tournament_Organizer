@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Tournament_Tracker
 {
     [PrimaryKey(nameof(PlayerID), nameof(TeamID))]
-    internal class TeamRegistration
+    public class TeamRegistration
     {
         private int playerID;
         private int teamID;
