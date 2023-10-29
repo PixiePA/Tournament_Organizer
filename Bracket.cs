@@ -51,6 +51,7 @@ namespace Tournament_Tracker
             IEnumerable<Match> matches =
                     from match in Matches
                     where match.RoundNumber == round
+                    orderby match.RoundPosition
                     select match;
             return matches.ToList();
         }
