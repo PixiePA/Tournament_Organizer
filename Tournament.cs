@@ -22,7 +22,7 @@ namespace Tournament_Tracker
             {
                 IEnumerable<TournamentRegistration> sortedRegistrations =
                     from registrations in AllRegistrants
-                    orderby registrations.Wins
+                    orderby registrations.Wins descending
                     select registrations;
                 return sortedRegistrations.ToList();
             }
@@ -62,10 +62,44 @@ namespace Tournament_Tracker
             }
 
         }
-        //abstract public TournamentType TournamentType { get; }
 
+        public void RegisterToTournament(Team team)
+        {
+            TournamentRegistration newtournamentRegistration = new TournamentRegistration() { Tournament = this, Team = team};
+            DatabaseManager.context.TournamentRegistrations.Add(newtournamentRegistration);
+            DatabaseManager.Save();
+        }
 
+        public void AddScores()
+        {
+            var grpPlacements = Placements
+                .GroupBy(registration => registration.Wins, registration => registration.Team, (team, teams) => new
+                {
+                    Team = team,
 
-        //public abstract void PlaySets();
+                    TeamsInRank = teams.Count(),
+
+                    Results = teams
+                    
+                });
+
+            int teamsBeat = Placements.Count();
+            int teamsLostTo = 0;
+
+            foreach (var rank in grpPlacements)
+            {
+                foreach (var team in rank.Results)
+                {
+                    foreach (Player player in team.GetPlayers())
+                    {
+                        player.Points += teamsBeat;
+                        player.Points -= teamsLostTo;
+                    }
+                }
+
+                teamsBeat -= rank.TeamsInRank;
+                teamsLostTo += rank.TeamsInRank;
+            }
+        }
     }
 }

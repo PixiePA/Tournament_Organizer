@@ -51,6 +51,7 @@ namespace Tournament_Tracker
             IEnumerable<Match> matches =
                     from match in Matches
                     where match.RoundNumber == round
+                    orderby match.RoundPosition
                     select match;
             return matches.ToList();
         }
@@ -114,7 +115,7 @@ namespace Tournament_Tracker
                 if (Competitors.Count() != 1)
                 {
                     int i = 0;
-                    for (i = 0; i + 1 < Competitors.Count; i = 2)
+                    for (i = 0; i + 1 < Competitors.Count; i += 2)
                     {
                         CreateNewMatch(Competitors[i], Competitors[i + 1], i / 2);
                     }
