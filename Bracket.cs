@@ -73,13 +73,13 @@ namespace Tournament_Tracker
                 select matches;
             foreach (Match match in allMatches)
             {
-                if (match.IsMatchOver())
+                if (!match.IsMatchOver())
                 {
-                    return true;
+                    return false;
                 }
             }
 
-            return false;
+            return true;
         }
 
         public void CreateNewMatch(TournamentRegistration TeamA, TournamentRegistration TeamB, int roundPosition)
@@ -123,7 +123,7 @@ namespace Tournament_Tracker
                     {
                         CreateNewMatch(Competitors[i], Competitors[i + 1], i / 2);
                     }
-                    if (i < Competitors.Count)
+                    if (Competitors.Count%2 != 0)
                     {
                         new Match(Competitors.Last(), (i + 2 / 2), currentRound);
                     }

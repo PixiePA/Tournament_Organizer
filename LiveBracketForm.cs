@@ -16,6 +16,7 @@ namespace Tournament_Tracker
 
         private Tournament currentTournament;
         private int numberOfMatches = 0;
+        private int currentRound = 1;
         public LiveBracketForm(Tournament currentTournament)
         {
             InitializeComponent();
@@ -25,11 +26,11 @@ namespace Tournament_Tracker
 
         private void LoadMatches()
         {
-            List<Match> initialMatches = currentTournament.Bracket.AllMatchesInRound(currentTournament.Bracket.CurrentRound);
-            int numOfMatches = initialMatches.Count;
-            if (numOfMatches == 8)
+            List<Match> initialMatches = currentTournament.Bracket.AllMatchesInRound(1);
+            numberOfMatches = initialMatches.Count;
+            if (numberOfMatches == 8)
             {
-                numOfMatches = 8;
+                numberOfMatches = 8;
                 for (int i = 0; i <= 16; i += 2)
                 {
                     Control control = Controls.Find("row4box" + i, true).FirstOrDefault();
@@ -43,9 +44,9 @@ namespace Tournament_Tracker
                     control.Visible = true;
                 }
             }
-            else if (numOfMatches == 4)
+            else if (numberOfMatches == 4)
             {
-                numOfMatches = 4;
+                numberOfMatches = 4;
                 for (int i = 0; i <= 8; i += 2)
                 {
                     Control control = this.Controls.Find("row3box" + i, true).FirstOrDefault();
@@ -60,9 +61,9 @@ namespace Tournament_Tracker
                 }
 
             }
-            else if (numOfMatches == 2)
+            else if (numberOfMatches == 2)
             {
-                numOfMatches = 2;
+                numberOfMatches = 2;
                 row2box1.Text = initialMatches[0].TeamA().Name;
                 row2box1.Visible = true;
                 row2box2.Text = initialMatches[0].TeamB().Name;
@@ -76,16 +77,16 @@ namespace Tournament_Tracker
 
         private void UpdateLiveBracket()
         {
-            int round = currentTournament.Bracket.CurrentRound;
+            currentRound = currentTournament.Bracket.CurrentRound;
             if (numberOfMatches == 8)
             {
-                if (round == 1)
+                if (currentRound == 1)
                 {
                     LoadMatches();
                 }
-                else if (round == 2)
+                else if (currentRound == 2)
                 {
-                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(currentRound);
                     row3box1.Text = matchesInRound[0].TeamA().Name;
                     row3box2.Text = matchesInRound[0].TeamB().Name;
                     row3box3.Text = matchesInRound[1].TeamA().Name;
@@ -95,17 +96,17 @@ namespace Tournament_Tracker
                     row3box7.Text = matchesInRound[3].TeamA().Name;
                     row3box8.Text = matchesInRound[3].TeamB().Name;
                 }
-                else if (round == 3)
+                else if (currentRound == 3)
                 {
-                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(currentRound);
                     row2box1.Text = matchesInRound[0].TeamA().Name;
                     row2box2.Text = matchesInRound[0].TeamB().Name;
                     row2box3.Text = matchesInRound[1].TeamA().Name;
                     row2box4.Text = matchesInRound[1].TeamB().Name;
                 }
-                else if (round == 4)
+                else if (currentRound == 4)
                 {
-                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(currentRound);
                     row1box1.Text = matchesInRound[0].TeamA().Name;
                     row1box2.Text = matchesInRound[0].TeamB().Name;
 
@@ -113,21 +114,21 @@ namespace Tournament_Tracker
             }
             if (numberOfMatches == 4)
             {
-                if (round == 1)
+                if (currentRound == 1)
                 {
                     LoadMatches();
                 }
-                else if (round == 2)
+                else if (currentRound == 2)
                 {
-                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(currentRound);
                     row2box1.Text = matchesInRound[0].TeamA().Name;
                     row2box2.Text = matchesInRound[0].TeamB().Name;
                     row2box3.Text = matchesInRound[1].TeamA().Name;
                     row2box4.Text = matchesInRound[1].TeamB().Name;
                 }
-                else if (round == 3)
+                else if (currentRound == 3)
                 {
-                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(currentRound);
                     row1box1.Text = matchesInRound[0].TeamA().Name;
                     row1box2.Text = matchesInRound[0].TeamB().Name;
 
@@ -135,13 +136,13 @@ namespace Tournament_Tracker
             }
             if (numberOfMatches == 2)
             {
-                if (round == 1)
+                if (currentRound == 1)
                 {
                     LoadMatches();
                 }
-                else if (round == 2)
+                else if (currentRound == 2)
                 {
-                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(currentRound);
                     row1box1.Text = matchesInRound[0].TeamA().Name;
                     row1box2.Text = matchesInRound[0].TeamB().Name;
                 }
@@ -163,18 +164,15 @@ namespace Tournament_Tracker
             {
                 if (!match.IsMatchOver())
                 {
-                    this.Hide();
-                    MinigameForm mForm = new MinigameForm(this, match);
+                    this.Close();
+                    MinigameForm mForm = new MinigameForm(match, currentTournament);
                     mForm.Show();
-                    return;
+                    break;
                 }
 
             }
 
-            currentTournament.Bracket.BeginNextRound();
-            UpdateLiveBracket();
 
-            PlayMatch();
         }
 
         private void LiveBracketForm_Activated(object sender, EventArgs e)

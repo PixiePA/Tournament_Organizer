@@ -16,12 +16,12 @@ namespace Tournament_Tracker
         Player player1;
         Player player2;
         Match match;
-        LiveBracketForm lbForm;
-        public MinigameForm(LiveBracketForm lbForm, Match match)
+        Tournament tournament;
+        public MinigameForm(Match match, Tournament tournament)
         {
             InitializeComponent();
             this.match = match;
-            this.lbForm = lbForm;
+            this.tournament = tournament;
 
             LoadTeam(match.TeamA(), lbTeam1Players);
             LoadTeam(match.TeamB(), lbTeam2Players);
@@ -108,7 +108,12 @@ namespace Tournament_Tracker
         private void btnContinue_Click(object sender, EventArgs e)
         {
             this.Close();
-            lbForm.Show();
+            if (tournament.Bracket.AllMatchesFinished())
+            {
+                tournament.Bracket.BeginNextRound();
+            }
+            LiveBracketForm newLiveBracketForm = new LiveBracketForm(tournament);
+            newLiveBracketForm.Show();
         }
 
         private void MinigameForm_FormClosing(object sender, FormClosingEventArgs e)
