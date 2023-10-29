@@ -9,9 +9,9 @@ namespace Tournament_Tracker
         public DbSet<TeamRegistration> TeamRegistrations { get; set; }
         public DbSet<Tournament> Tournaments { get; set; }
         public DbSet<TournamentRegistration> TournamentRegistrations { get; set; }
-        public DbSet<Bracket> Brackets { get; set; }
         public DbSet<MatchRegistration> MatchRegistrations { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<WinnersBracket> WinnersBrackets { get; set; }
 
         public DbSet<LosersBracket> LosersBrackets { get; set; }
 

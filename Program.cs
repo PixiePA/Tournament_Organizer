@@ -21,6 +21,14 @@ namespace Tournament_Tracker
 
             newTeam.RegisterToTeam(newPlayer);*/
 
+            //Code to try to make a winner's bracket
+
+            Tournament tournament = new Tournament() { TournamentName = "testTourney" };
+
+            WinnersBracket winnersBracket = new WinnersBracket() { Tournament = tournament };
+
+            DatabaseManager.context.WinnersBrackets.Add(winnersBracket);
+
             DatabaseManager.Save();
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

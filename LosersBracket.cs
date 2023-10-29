@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,12 +12,14 @@ namespace Tournament_Tracker
 {
     public class LosersBracket : Bracket
     {
-        private int winnersBracketID;
+        private int? winnersBracketID;
+
+        public int LosersBracketID { get => bracketID; set => bracketID = value; }
 
         [ForeignKey(nameof(WinnersBracket))]
-        public int WinnersBracketID { get => winnersBracketID; set => winnersBracketID = value; }
+        public int? WinnersBracketID { get => winnersBracketID; set => winnersBracketID = value; }
 
-        public Bracket WinnersBracket { get; set; }
+        public WinnersBracket? WinnersBracket { get; set; }
 
         public override bool BeginNextRound()
         {
@@ -29,7 +33,7 @@ namespace Tournament_Tracker
                     DatabaseManager.UpdateEntity(winner);
                 }
 
-                List<TournamentRegistration> WinnersBracketLosers = DatabaseManager.context.Brackets.Find(winnersBracketID).AllWinnersInRound(CurrentRound);
+                List<TournamentRegistration> WinnersBracketLosers = DatabaseManager.context.WinnersBrackets.Find(winnersBracketID).AllWinnersInRound(CurrentRound);
 
                 List<TournamentRegistration> NextRoundCompetitors = new List<TournamentRegistration>();
 
