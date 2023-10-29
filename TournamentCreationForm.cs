@@ -14,10 +14,20 @@ namespace Tournament_Tracker
     public partial class TournamentCreationForm : Form
     {
         private Form1 menu;
+        private List<Team> teams;
         public TournamentCreationForm(Form1 menu)
         {
             InitializeComponent();
             this.menu = menu;
+            teams = DatabaseManager.context.Teams.ToList();
+        }
+
+        private void TournamentCreationForm_Load(object sender, EventArgs e)
+        {
+            foreach(Team team in teams)
+            {
+                lbTeamSelection.Items.Add(team);
+            }
         }
 
         // Add the teams selected in the list box

@@ -34,12 +34,14 @@
             lblPlayerEmail = new Label();
             tbPlayerName = new TextBox();
             tbPlayerEmail = new TextBox();
-            label1 = new Label();
+            lblChooseTeam = new Label();
             cbTeams = new ComboBox();
             lblWelcome = new Label();
             label2 = new Label();
             btnSubmit = new Button();
             btnCancel = new Button();
+            btnNoTeam = new Button();
+            lblError = new Label();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -96,19 +98,19 @@
             tbPlayerEmail.Size = new Size(300, 29);
             tbPlayerEmail.TabIndex = 5;
             // 
-            // label1
+            // lblChooseTeam
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(48, 330);
-            label1.Name = "label1";
-            label1.Size = new Size(116, 21);
-            label1.TabIndex = 6;
-            label1.Text = "Choose a team:";
+            lblChooseTeam.AutoSize = true;
+            lblChooseTeam.Location = new Point(48, 332);
+            lblChooseTeam.Name = "lblChooseTeam";
+            lblChooseTeam.Size = new Size(116, 21);
+            lblChooseTeam.TabIndex = 6;
+            lblChooseTeam.Text = "Choose a team:";
             // 
             // cbTeams
             // 
             cbTeams.FormattingEnabled = true;
-            cbTeams.Location = new Point(170, 327);
+            cbTeams.Location = new Point(170, 328);
             cbTeams.Name = "cbTeams";
             cbTeams.Size = new Size(400, 29);
             cbTeams.TabIndex = 7;
@@ -155,17 +157,44 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
+            // btnNoTeam
+            // 
+            btnNoTeam.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnNoTeam.Location = new Point(585, 327);
+            btnNoTeam.Name = "btnNoTeam";
+            btnNoTeam.Size = new Size(120, 30);
+            btnNoTeam.TabIndex = 12;
+            btnNoTeam.Text = "I don't have a team";
+            btnNoTeam.UseMnemonic = false;
+            btnNoTeam.UseVisualStyleBackColor = true;
+            btnNoTeam.Click += btnNoTeam_Click;
+            // 
+            // lblError
+            // 
+            lblError.AutoSize = true;
+            lblError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblError.ForeColor = Color.Red;
+            lblError.Location = new Point(142, 399);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(501, 15);
+            lblError.TabIndex = 28;
+            lblError.Text = "You must add a name and email. You must also choose a team or select \"I don't have a team\".";
+            lblError.TextAlign = ContentAlignment.MiddleCenter;
+            lblError.Visible = false;
+            // 
             // PlayerRegistrationForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(784, 561);
+            Controls.Add(lblError);
+            Controls.Add(btnNoTeam);
             Controls.Add(btnCancel);
             Controls.Add(btnSubmit);
             Controls.Add(label2);
             Controls.Add(lblWelcome);
             Controls.Add(cbTeams);
-            Controls.Add(label1);
+            Controls.Add(lblChooseTeam);
             Controls.Add(tbPlayerEmail);
             Controls.Add(tbPlayerName);
             Controls.Add(lblPlayerEmail);
@@ -191,11 +220,13 @@
         private Label lblPlayerEmail;
         private TextBox tbPlayerName;
         private TextBox tbPlayerEmail;
-        private Label label1;
+        private Label lblChooseTeam;
         private ComboBox cbTeams;
         private Label lblWelcome;
         private Label label2;
         private Button btnSubmit;
         private Button btnCancel;
+        private Button btnNoTeam;
+        private Label lblError;
     }
 }

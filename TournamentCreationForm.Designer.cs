@@ -251,6 +251,7 @@
             Name = "TournamentCreationForm";
             Text = "Ultimate Flipper - Tournament Creation";
             FormClosing += TournamentCreationForm_FormClosing;
+            Load += TournamentCreationForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
             PerformLayout();

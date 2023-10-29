@@ -12,6 +12,15 @@ namespace Tournament_Tracker
         [Required]
         public string Name { get => name; set => name = value; }
 
+        public Team()
+        {
+            
+        }
+        public Team(string name)
+        {
+            this.Name = name;
+        }
+
         [NotMapped]
         public float AveragePoints
         {
@@ -106,6 +115,11 @@ namespace Tournament_Tracker
             {
                 throw new KeyNotFoundException("Player with given key does not exist");
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}";
         }
     }
 }
