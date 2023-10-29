@@ -15,9 +15,13 @@ namespace Tournament_Tracker
     {
         Player player1;
         Player player2;
-        public MinigameForm(Match match)
+        Match match;
+        LiveBracketForm lbForm;
+        public MinigameForm(LiveBracketForm lbForm, Match match)
         {
             InitializeComponent();
+            this.match = match;
+            this.lbForm = lbForm;
 
             LoadTeam(match.TeamA(), lbTeam1Players);
             LoadTeam(match.TeamB(), lbTeam2Players);
@@ -59,6 +63,7 @@ namespace Tournament_Tracker
             {
                 // Player 1 wins
                 lblWinner.Text = player1.Name + " Won That Round!";
+                match.ReportAWin();
                 lbTeam2Players.Items.RemoveAt(0);
 
                 // Check if there are any players left of team 2
@@ -79,6 +84,7 @@ namespace Tournament_Tracker
             {
                 // Player 2 wins
                 lblWinner.Text = player2.Name + " Won That Round!";
+                match.ReportBWin();
                 lbTeam1Players.Items.RemoveAt(0);
                 
                 // Check if there are any players left of team 1
@@ -101,7 +107,8 @@ namespace Tournament_Tracker
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            lbForm.Show();
         }
 
         private void MinigameForm_FormClosing(object sender, FormClosingEventArgs e)

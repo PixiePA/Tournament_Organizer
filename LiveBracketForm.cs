@@ -158,12 +158,19 @@ namespace Tournament_Tracker
                 if (!match.IsMatchOver())
                 {
                     this.Hide();
-                    MinigameForm mForm = new MinigameForm(match);
+                    MinigameForm mForm = new MinigameForm(this, match);
                     mForm.Show();
                     break;
                 }
+                currentTournament.Bracket.BeginNextRound();
+                UpdateLiveBracket();
             }
 
+        }
+
+        private void LiveBracketForm_Activated(object sender, EventArgs e)
+        {
+            UpdateLiveBracket();
         }
     }
 }

@@ -407,7 +407,8 @@
             Controls.Add(pbTitleImage);
             Controls.Add(lblTitle);
             Name = "LiveBracketForm";
-            Text = "LiveBracket";
+            Text = "Ultimate Flipper - Live Bracket";
+            Activated += LiveBracketForm_Activated;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
