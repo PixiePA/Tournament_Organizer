@@ -24,6 +24,8 @@ namespace Tournament_Tracker
         public int MaxRounds { get => maxRounds; set => maxRounds = value; }
         public bool PlayAll { get => playAll; set => playAll = value; }
 
+        public int BracketID { get => bracketID; set => bracketID = value; }
+
         //Foreign key of bracket match is held in
         /*[ForeignKey(nameof(Bracket))]
         public int BracketID { get => bracketID; set => bracketID = value; }*/
@@ -39,7 +41,7 @@ namespace Tournament_Tracker
         {
             get
             {
-                return DatabaseManager.context.MatchRegistrations.Find(matchID, true).Team;
+                return DatabaseManager.context.MatchRegistrations.Find(true, matchID).Team;
             }
         }
 
@@ -48,7 +50,7 @@ namespace Tournament_Tracker
         {
             get
             {
-                return DatabaseManager.context.MatchRegistrations.Find(matchID, false).Team;
+                return DatabaseManager.context.MatchRegistrations.Find(false, matchID).Team;
             }
         }
 

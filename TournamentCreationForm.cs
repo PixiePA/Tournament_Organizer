@@ -109,13 +109,15 @@ namespace Tournament_Tracker
             // Add the tournament
             DatabaseManager.context.Tournaments.Add(tournament);
 
+            DatabaseManager.Save();
+
             // Add all selected teams to the tournament
             foreach (Team team in lbTeamFinal.Items)
             {
                 tournament.RegisterToTournament(team);
             }
 
-            bracket.SeedBracket(tournament.AllRegistrants);
+            bracket.SeedBracket(tournament.AllRegistrants());
 
             DatabaseManager.Save();
 

@@ -24,7 +24,7 @@ namespace Tournament_Tracker
 
         private void LoadMatches()
         {
-            List<Match> initialMatches = currentTournament.Bracket.Matches.ToList();
+            List<Match> initialMatches = currentTournament.Bracket.AllMatchesInRound(currentTournament.Bracket.CurrentRound);
             int numOfMatches = initialMatches.Count;
             if (numOfMatches == 8)
             {

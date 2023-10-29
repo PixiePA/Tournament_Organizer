@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,10 +30,6 @@ namespace Tournament_Tracker
         [Required]
         public int TournamentID { get => tournamentID; set => tournamentID = value; }
 
-        [Required]
-        [ForeignKey(nameof(BracketID))]
-        public ICollection<Match> Matches { get; set; }
-
         public Tournament Tournament { get; set; }
 
         public TournamentRegistration Winner
@@ -51,7 +48,7 @@ namespace Tournament_Tracker
         public List<Match> AllMatchesInRound(int round)
         {
             IEnumerable<Match> matches =
-                    from match in Matches
+                    from match in DatabaseManager.context.Matches
                     where match.RoundNumber == round
                     orderby match.RoundPosition
                     select match;
@@ -70,7 +67,11 @@ namespace Tournament_Tracker
 
         public bool AllMatchesFinished()
         {
-            foreach (Match match in Matches)
+            var allMatches =
+                from matches in DatabaseManager.context.Matches
+                where matches.BracketID == BracketID
+                select matches;
+            foreach (Match match in allMatches)
             {
                 if (match.IsMatchOver())
                 {
@@ -83,7 +84,9 @@ namespace Tournament_Tracker
 
         public void CreateNewMatch(TournamentRegistration teamA, TournamentRegistration teamB, int roundPosition)
         {
-            Match newMatch = new Match(teamA, teamB, roundPosition, CurrentRound);
+            Match newMatch = new Match(teamA, teamB, roundPosition, CurrentRound) { BracketID = this.bracketID };
+            DatabaseManager.context.Matches.Add(newMatch);
+            DatabaseManager.Save();
         }
 
         public virtual bool BeginNextRound()

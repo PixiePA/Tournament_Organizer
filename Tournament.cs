@@ -10,37 +10,38 @@ namespace Tournament_Tracker
         private int tournamentID;
         private string tournamentName = "";
 
-        public int TournamentID { get => tournamentID; set => tournamentID = value; }
+        
 
         [Required]
         public string TournamentName { get => tournamentName; set => tournamentName = value; }
 
+
+        public int TournamentID { get => tournamentID; set => tournamentID = value; }
+
+        
         [NotMapped]
         public List<TournamentRegistration> Placements
         {
             get
             {
                 IEnumerable<TournamentRegistration> sortedRegistrations =
-                    from registrations in AllRegistrants
+                    from registrations in DatabaseManager.context.TournamentRegistrations
+                    where registrations.TournamentID == tournamentID
                     orderby registrations.Wins descending
                     select registrations;
                 return sortedRegistrations.ToList();
             }
         }
 
-
-        public List<TournamentRegistration> AllRegistrants
+        public List<TournamentRegistration> AllRegistrants()
         {
-            get
-            {
-                IEnumerable<TournamentRegistration> allRegistrations =
-                    from registrations in DatabaseManager.context.TournamentRegistrations
-                    where registrations.TournamentID == tournamentID
-                    select registrations;
-                return allRegistrations.ToList();
-            }
+            IEnumerable<TournamentRegistration> allRegistrations =
+                from registrations in DatabaseManager.context.TournamentRegistrations
+                where registrations.TournamentID == tournamentID
+                select registrations;
+            return allRegistrations.ToList();
         }
-
+        
 
         public Bracket Bracket
         {
@@ -53,7 +54,7 @@ namespace Tournament_Tracker
             }
         }
 
-
+        [NotMapped]
         public TournamentRegistration Winner
         {
             get
@@ -65,7 +66,9 @@ namespace Tournament_Tracker
 
         public void RegisterToTournament(Team team)
         {
-            TournamentRegistration newtournamentRegistration = new TournamentRegistration() { Tournament = this, Team = team};
+            TournamentRegistration newtournamentRegistration = new TournamentRegistration();
+            newtournamentRegistration.Team = team;
+            newtournamentRegistration.Tournament = this;
             DatabaseManager.context.TournamentRegistrations.Add(newtournamentRegistration);
             DatabaseManager.Save();
         }

@@ -12,17 +12,11 @@ namespace Tournament_Tracker
         public DbSet<MatchRegistration> MatchRegistrations { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<WinnersBracket> WinnersBrackets { get; set; }
-
         public DbSet<LosersBracket> LosersBrackets { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TournamentOrganizerDb;Trusted_Connection=True;");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
         }
     }
 }

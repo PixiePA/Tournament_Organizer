@@ -86,7 +86,7 @@ namespace Tournament_Tracker
                 if (Competitors.Count() != 1)
                 {
                     int i = 0;
-                    for (i = 0; i + 1 < Competitors.Count; i = 2)
+                    for (i = 0; i + 1 < Competitors.Count; i += 2)
                     {
                         CreateNewMatch(Competitors[i], Competitors[i + 1], i / 2);
                     }

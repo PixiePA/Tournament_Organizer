@@ -9,10 +9,12 @@ namespace Tournament_Tracker
     {
         private int teamID;
         private int tournamentID;
-        private int wins;
+        private int wins = 0;
 
-        [Required]
+        public int Wins { get => wins; set => wins = value; }
+
         [ForeignKey(nameof(Team))]
+        [Required]
         public int TeamID { get => teamID; set => teamID = value; }
 
 
@@ -23,7 +25,5 @@ namespace Tournament_Tracker
         public Tournament Tournament { get; set; }
 
         public Team Team { get; set; }
-
-        public int Wins { get => wins; set => wins = value; }
     }
 }
