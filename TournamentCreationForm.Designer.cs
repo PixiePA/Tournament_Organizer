@@ -219,9 +219,9 @@
             lblError.ForeColor = Color.Red;
             lblError.Location = new Point(166, 442);
             lblError.Name = "lblError";
-            lblError.Size = new Size(452, 15);
+            lblError.Size = new Size(434, 15);
             lblError.TabIndex = 31;
-            lblError.Text = "You must select 4, 8, 12 or 16 teams. Tournament name and type must not be empty.";
+            lblError.Text = "You must select 4, 8 or 16 teams. Tournament name and type must not be empty.";
             lblError.Visible = false;
             // 
             // TournamentCreationForm

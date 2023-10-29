@@ -9,6 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SendGrid;
+using SendGrid.Helpers.Mail;
+
 
 namespace Tournament_Tracker
 {
@@ -78,6 +81,11 @@ namespace Tournament_Tracker
                     lblError.Visible = true;
                 }
             }
+        }
+
+        private void sendPlayerEmail(Player player)
+        {
+
         }
 
         // Validate that there is a name and email and they're in the correct format

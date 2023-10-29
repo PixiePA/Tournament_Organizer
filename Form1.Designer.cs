@@ -33,6 +33,7 @@
             pbTitleImage = new PictureBox();
             btnTeamRegistration = new Button();
             btnTournamentCreation = new Button();
+            btnViewEdit = new Button();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -69,7 +70,7 @@
             // 
             // btnTeamRegistration
             // 
-            btnTeamRegistration.Location = new Point(298, 220);
+            btnTeamRegistration.Location = new Point(298, 316);
             btnTeamRegistration.Name = "btnTeamRegistration";
             btnTeamRegistration.Size = new Size(200, 50);
             btnTeamRegistration.TabIndex = 4;
@@ -79,7 +80,7 @@
             // 
             // btnTournamentCreation
             // 
-            btnTournamentCreation.Location = new Point(298, 294);
+            btnTournamentCreation.Location = new Point(298, 401);
             btnTournamentCreation.Name = "btnTournamentCreation";
             btnTournamentCreation.Size = new Size(200, 50);
             btnTournamentCreation.TabIndex = 5;
@@ -87,11 +88,22 @@
             btnTournamentCreation.UseVisualStyleBackColor = true;
             btnTournamentCreation.Click += btnTournamentCreation_Click;
             // 
+            // btnViewEdit
+            // 
+            btnViewEdit.Location = new Point(298, 231);
+            btnViewEdit.Name = "btnViewEdit";
+            btnViewEdit.Size = new Size(200, 50);
+            btnViewEdit.TabIndex = 6;
+            btnViewEdit.Text = "View / Edit Teams";
+            btnViewEdit.UseVisualStyleBackColor = true;
+            btnViewEdit.Click += btnViewEdit_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(784, 561);
+            Controls.Add(btnViewEdit);
             Controls.Add(btnTournamentCreation);
             Controls.Add(btnTeamRegistration);
             Controls.Add(pbTitleImage);
@@ -113,5 +125,6 @@
         private PictureBox pbTitleImage;
         private Button btnTeamRegistration;
         private Button btnTournamentCreation;
+        private Button btnViewEdit;
     }
 }

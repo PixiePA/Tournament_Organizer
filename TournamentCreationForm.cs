@@ -65,7 +65,7 @@ namespace Tournament_Tracker
         private void InputValidation()
         {
             // Check amount of teams selected and that the tournament name is selected
-            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 12 || lbTeamFinal.Items.Count == 16) && tbTournamentName.Text.Length > 0)
+            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 16) && tbTournamentName.Text.Length > 0)
             {
                 lblError.Visible = false;
                 btnSubmit.Visible = true;
@@ -106,6 +106,7 @@ namespace Tournament_Tracker
                 return;
             }
 
+            // Add the tournament
             DatabaseManager.context.Tournaments.Add(tournament);
 
             // Add all selected teams to the tournament
