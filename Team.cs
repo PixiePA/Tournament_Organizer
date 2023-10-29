@@ -61,11 +61,12 @@ namespace Tournament_Tracker
                 from playerRegistration in DatabaseManager.context.TeamRegistrations
                 where playerRegistration.TeamID == TeamID
                 select playerRegistration.PlayerID;
-            if (playerRegistations.Any())
+            List<int> playerIDs = playerRegistations.ToList();
+            if (playerIDs.Any())
             {
                 try
                 {
-                    foreach (var playerKey in playerRegistations)
+                    foreach (int playerKey in playerIDs)
                     {
                         Player player = DatabaseManager.context.Players.Find(playerKey);
 
