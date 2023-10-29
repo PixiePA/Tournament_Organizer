@@ -74,18 +74,23 @@ namespace Tournament_Tracker
         // Toggle visibility of player selection combo boxes
         private void TogglePlayerSelect(int btnNumber)
         {
-            // Reset all visible states of the player number buttons
+            // Reset all visible states of the player number buttons and labels
             cbPlayer1.Visible = false;
+            lblPlayer1.Visible = false;
             cbPlayer2.Visible = false;
+            lblPlayer2.Visible = false;
             cbPlayer3.Visible = false;
+            lblPlayer3.Visible = false;
             cbPlayer4.Visible = false;
-
+            lblPlayer4.Visible = false;
+                
             // Check that comboboxes aren't null and toggle visibility on all player choice boxes up to the btn number
             for (int i = 1; i <= btnNumber; i++)
             {
-                if (Controls.Find("cbPlayer" + i, true).FirstOrDefault() is ComboBox cb)
+                if (Controls.Find("cbPlayer" + i, true).FirstOrDefault() is ComboBox cb && Controls.Find("lblPlayer" + (i), true).FirstOrDefault() is Label lbl)
                 {
                     cb.Visible = true;
+                    lbl.Visible = true;
                 }
             }
         }
@@ -109,6 +114,7 @@ namespace Tournament_Tracker
                         // Check if player is already selected and display error/button depending on the result
                         if (selectedPlayerIDs.Contains(playerID))
                         {
+                            lblError.Text = "You can't select the same player more than once";
                             lblError.Visible = true;
                             btnSubmit.Visible = false;
                             return;
@@ -130,9 +136,93 @@ namespace Tournament_Tracker
             PlayerDuplicates();
         }
 
+        // Create a new team based on the number of players selected, or show an error message
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Create team with the players selected
+            // Create team with the players selected and add the team to the database
+            //
+            switch(numOfPlayers)
+            {
+                case 1:
+                    if(tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1)
+                    {
+                        Team team = new Team(tbTeamName.Text);
+                        team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
+                        DatabaseManager.context.Teams.Add(team);
+                        DatabaseManager.Save();
+
+                        this.Close();
+                        menu.Show();
+                    }
+                    else
+                    {
+                        lblError.Text = "You must have a team name and select a player in all dropdown boxes available.";
+                        lblError.Visible = true;
+                    }
+                    break;
+                case 2:
+                    if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1 && cbPlayer2.SelectedIndex != -1)
+                    {
+                        Team team = new Team(tbTeamName.Text);
+                        team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
+                        team.RegisterToTeam(cbPlayer2.SelectedItem as Player);
+                        DatabaseManager.context.Teams.Add(team);
+                        DatabaseManager.Save();
+
+                        this.Close();
+                        menu.Show();
+                    }
+                    else
+                    {
+                        lblError.Text = "You must have a team name and select a player in all dropdown boxes available.";
+                        lblError.Visible = true;
+                    }
+                    break;
+                case 3:
+                    if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1 && cbPlayer2.SelectedIndex != -1 && cbPlayer3.SelectedIndex != -1)
+                    {
+                        Team team = new Team(tbTeamName.Text);
+                        team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
+                        team.RegisterToTeam(cbPlayer2.SelectedItem as Player);
+                        team.RegisterToTeam(cbPlayer3.SelectedItem as Player);
+                        DatabaseManager.context.Teams.Add(team);
+                        DatabaseManager.Save();
+
+                        this.Close();
+                        menu.Show();
+                    }
+                    else
+                    {
+                        lblError.Text = "You must have a team name and select a player in all dropdown boxes available.";
+                        lblError.Visible = true;
+                    }
+                    break;
+                case 4:
+                    if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1 && cbPlayer2.SelectedIndex != -1 && cbPlayer3.SelectedIndex != -1 && cbPlayer4.SelectedIndex != -1)
+                    {
+                        Team team = new Team(tbTeamName.Text);
+                        team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
+                        team.RegisterToTeam(cbPlayer2.SelectedItem as Player);
+                        team.RegisterToTeam(cbPlayer3.SelectedItem as Player);
+                        team.RegisterToTeam(cbPlayer4.SelectedItem as Player);
+                        DatabaseManager.context.Teams.Add(team);
+                        DatabaseManager.Save();
+
+                        this.Close();
+                        menu.Show();
+                    }
+                    else
+                    {
+                        lblError.Text = "You must have a team name and select a player in all dropdown boxes available.";
+                        lblError.Visible = true;
+                    }
+                    break;
+                default:
+                    lblError.Text = "You must have a team name and select a player in all dropdown boxes available.";
+                    lblError.Visible = true;
+                    break;
+
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
