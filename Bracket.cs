@@ -82,10 +82,9 @@ namespace Tournament_Tracker
             return false;
         }
 
-        public void CreateNewMatch(TournamentRegistration teamA, TournamentRegistration teamB, int roundPosition)
+        public void CreateNewMatch(TournamentRegistration TeamA, TournamentRegistration TeamB, int roundPosition)
         {
-            Match newMatch = new Match(teamA, teamB, roundPosition, CurrentRound) { BracketID = this.bracketID };
-            DatabaseManager.context.Matches.Add(newMatch);
+            Match newMatch = new Match(TeamA, TeamB, roundPosition, CurrentRound) { BracketID = this.bracketID };
             DatabaseManager.Save();
         }
 

@@ -18,8 +18,8 @@ namespace Tournament_Tracker
         {
             InitializeComponent();
 
-            LoadTeam(match.TeamA, lbTeam1Players);
-            LoadTeam(match.TeamB, lbTeam1Players);
+            LoadTeam(match.TeamA(), lbTeam1Players);
+            LoadTeam(match.TeamB(), lbTeam1Players);
 
             LoadMatch();
         }
