@@ -14,8 +14,6 @@ namespace Tournament_Tracker
     {
         private int? winnersBracketID;
 
-        public int LosersBracketID { get => bracketID; set => bracketID = value; }
-
         [ForeignKey(nameof(WinnersBracket))]
         public int? WinnersBracketID { get => winnersBracketID; set => winnersBracketID = value; }
 
