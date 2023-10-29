@@ -65,7 +65,7 @@ namespace Tournament_Tracker
         private void InputValidation()
         {
             // Check amount of teams selected and that the tournament name is selected
-            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 12 || lbTeamFinal.Items.Count == 16) && tbTournamentName.Text.Length > 0)
+            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 16) && tbTournamentName.Text.Length > 0)
             {
                 lblError.Visible = false;
                 btnSubmit.Visible = true;
@@ -94,9 +94,11 @@ namespace Tournament_Tracker
             }
             else if (cbTournamentType.SelectedIndex == 1 && tbTournamentName.Text.Length > 0)
             {
-                LosersBracket bracket = new LosersBracket();
-                bracket.Tournament = tournament;
-                DatabaseManager.context.LosersBrackets.Add(bracket);
+                WinnersBracket bracket = new WinnersBracket();
+                LosersBracket lBracket = new LosersBracket();
+                lBracket.WinnersBracket = bracket;
+                lBracket.Tournament = tournament;
+                DatabaseManager.context.LosersBrackets.Add(lBracket);
             }
             else
             {
@@ -104,17 +106,20 @@ namespace Tournament_Tracker
                 return;
             }
 
+            // Add the tournament
+            DatabaseManager.context.Tournaments.Add(tournament);
+
             // Add all selected teams to the tournament
-            foreach(Team team in lbTeamFinal.Items)
+            foreach (Team team in lbTeamFinal.Items)
             {
                 tournament.RegisterToTournament(team);
             }
 
-            DatabaseManager.context.Tournaments.Add(tournament);
             DatabaseManager.Save();
 
             this.Close();
-            menu.Show();
+            LiveBracketForm lbForm = new LiveBracketForm(tournament);
+            lbForm.Show();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

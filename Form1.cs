@@ -14,6 +14,13 @@ namespace Tournament_Tracker
             this.Hide();
         }
 
+        private void btnViewEdit_Click(object sender, EventArgs e)
+        {
+            TeamViewEditForm tveForm = new TeamViewEditForm(this);
+            tveForm.Show();
+            this.Hide();
+        }
+
         private void btnTeamRegistration_Click(object sender, EventArgs e)
         {
             TeamRegistrationForm trForm = new TeamRegistrationForm(this);

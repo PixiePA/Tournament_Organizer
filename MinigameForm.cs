@@ -14,12 +14,12 @@ namespace Tournament_Tracker
     {
         Player player1;
         Player player2;
-        public MinigameForm(Team team1, Team team2)
+        public MinigameForm(Match match)
         {
             InitializeComponent();
 
-            LoadTeam(team1, lbTeam1Players);
-            LoadTeam(team2, lbTeam1Players);
+            LoadTeam(match.TeamA, lbTeam1Players);
+            LoadTeam(match.TeamB, lbTeam1Players);
 
             LoadMatch();
         }

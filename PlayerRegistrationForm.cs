@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Tournament_Tracker
 {
     public partial class PlayerRegistrationForm : Form

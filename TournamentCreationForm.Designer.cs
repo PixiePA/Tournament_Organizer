@@ -57,7 +57,7 @@
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(712, 42);
             lblWelcome.TabIndex = 13;
-            lblWelcome.Text = "Welcome to Tournament Creation! Please choose a tournament name, type, and the teams competing.\r\nPlease note that the amount of teams must be 4, 8, 12, or 16.\r\n";
+            lblWelcome.Text = "Welcome to Tournament Creation! Please choose a tournament name, type, and the teams competing.\r\nPlease note that once you create a tournament, it will automatically start. Have Fun!\r\n";
             // 
             // pbTitleImage
             // 
@@ -219,9 +219,9 @@
             lblError.ForeColor = Color.Red;
             lblError.Location = new Point(166, 442);
             lblError.Name = "lblError";
-            lblError.Size = new Size(452, 15);
+            lblError.Size = new Size(434, 15);
             lblError.TabIndex = 31;
-            lblError.Text = "You must select 4, 8, 12 or 16 teams. Tournament name and type must not be empty.";
+            lblError.Text = "You must select 4, 8 or 16 teams. Tournament name and type must not be empty.";
             lblError.Visible = false;
             // 
             // TournamentCreationForm
