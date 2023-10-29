@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Tournament_Tracker
 {
+    [PrimaryKey(nameof(BracketID))]
     public class Bracket
     {
         protected int bracketID;
