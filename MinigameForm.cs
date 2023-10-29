@@ -26,6 +26,9 @@ namespace Tournament_Tracker
             LoadTeam(match.TeamA(), lbTeam1Players);
             LoadTeam(match.TeamB(), lbTeam2Players);
 
+            lblTeam1Name.Text = match.TeamA().Name;
+            lblTeam2Name.Text = match.TeamB().Name;
+
             LoadMatch();
         }
 
@@ -86,7 +89,15 @@ namespace Tournament_Tracker
                 lblWinner.Text = player2.Name + " Won That Round!";
                 match.ReportBWin();
                 lbTeam1Players.Items.RemoveAt(0);
-                
+
+
+                // Check if tournament is over
+                if (tournament.Bracket.IsFinished)
+                {
+                    lblCurrentPlayers.Text = "TOURNAMENT OVER!!!!";
+                    btnContinue.Text = "MAIN MENU";
+                }
+
                 // Check if there are any players left of team 1
                 if (lbTeam1Players.Items.Count == 0)
                 {
@@ -102,7 +113,6 @@ namespace Tournament_Tracker
                 }
             }
 
-
         }
 
         private void btnContinue_Click(object sender, EventArgs e)
@@ -112,8 +122,19 @@ namespace Tournament_Tracker
             {
                 tournament.Bracket.BeginNextRound();
             }
-            LiveBracketForm newLiveBracketForm = new LiveBracketForm(tournament);
-            newLiveBracketForm.Show();
+
+            // Take user back to live bracket or back to main menu depending on tournament status
+            if(tournament.Bracket.IsFinished)
+            {
+                Form1 menu = new Form1();
+                menu.Show();
+            } 
+            else
+            {
+                LiveBracketForm newLiveBracketForm = new LiveBracketForm(tournament);
+                newLiveBracketForm.Show();
+            }
+            
         }
 
         private void MinigameForm_FormClosing(object sender, FormClosingEventArgs e)

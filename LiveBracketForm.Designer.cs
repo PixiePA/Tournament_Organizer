@@ -63,7 +63,6 @@
             row1box2 = new TextBox();
             lblWelcome = new Label();
             button1 = new Button();
-            btnAutoPlay = new Button();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -355,23 +354,11 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // btnAutoPlay
-            // 
-            btnAutoPlay.BackColor = Color.Salmon;
-            btnAutoPlay.Location = new Point(355, 508);
-            btnAutoPlay.Margin = new Padding(2);
-            btnAutoPlay.Name = "btnAutoPlay";
-            btnAutoPlay.Size = new Size(75, 30);
-            btnAutoPlay.TabIndex = 70;
-            btnAutoPlay.Text = "Auto-Play";
-            btnAutoPlay.UseVisualStyleBackColor = false;
-            // 
             // LiveBracketForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
-            Controls.Add(btnAutoPlay);
             Controls.Add(button1);
             Controls.Add(lblWelcome);
             Controls.Add(row1box2);
@@ -452,6 +439,5 @@
         private Button autoBtn;
         private Label lblWelcome;
         private Button button1;
-        private Button btnAutoPlay;
     }
 }
