@@ -62,6 +62,13 @@ namespace Tournament_Tracker
             }
 
         }
+
+        public void RegisterToTournament(Team team)
+        {
+            TournamentRegistration newtournamentRegistration = new TournamentRegistration() { Tournament = this, Team = team};
+            DatabaseManager.context.TournamentRegistrations.Add(newtournamentRegistration);
+            DatabaseManager.Save();
+        }
         //abstract public TournamentType TournamentType { get; }
 
 
