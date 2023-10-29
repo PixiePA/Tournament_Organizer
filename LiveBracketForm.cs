@@ -12,10 +12,12 @@ namespace Tournament_Tracker
 {
     public partial class LiveBracketForm : Form
     {
-        public LiveBracketForm()
+
+        private Tournament currentTournament;
+        public LiveBracketForm(Tournament currentTournament)
         {
             InitializeComponent();
-
+            this.currentTournament = currentTournament;
 
             ////List of all teams that are participating in the tournament (can get either 4, 8 or 16 teams)
             ////get list of teams
@@ -65,19 +67,35 @@ namespace Tournament_Tracker
             //}
         }
 
-        private void LoadMatch(Match match)
+        private void LoadMatches(Match match)
         {
-            List<Player> players = team.GetPlayers();
 
-            foreach (Player player in players)
-            {
-                listBox.Items.Add(player);
-            }
+            Database.
+            List<Match> initialMatches = Tournament.Bracket.Matches;
+            len.matchesList; // to determine how many boxes are populated
+           // List<Match> Matches
+
+
+            //List<Player> players = team.GetPlayers();
+
+            //foreach (Player player in players)
+            //{
+            //    listBox.Items.Add(player);
+            //}
+
+            //int round = Bracket.CurrentRound.Get;
+            //List<Match> matches = Bracket.AllMatchesInRound(round);
+            //List<Match> allMatchesInRound = matches;
         }
 
         private void btnAutoPlay_Click(object sender, EventArgs e)
         {
             //auto populate bracket with random winers
+
+        }
+
+        private void row4box1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

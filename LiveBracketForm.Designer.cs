@@ -100,6 +100,7 @@
             row4box1.Name = "row4box1";
             row4box1.Size = new Size(141, 31);
             row4box1.TabIndex = 37;
+            row4box1.TextChanged += row4box1_TextChanged;
             // 
             // row4box2
             // 
@@ -324,7 +325,6 @@
             row1box1.Name = "row1box1";
             row1box1.Size = new Size(141, 31);
             row1box1.TabIndex = 66;
-            row1box1.TextChanged += row1box1_TextChanged;
             // 
             // row1box2
             // 
