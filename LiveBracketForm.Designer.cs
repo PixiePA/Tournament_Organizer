@@ -63,6 +63,7 @@
             row1box2 = new TextBox();
             lblWelcome = new Label();
             button1 = new Button();
+            btnAutoPlay = new Button();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -70,10 +71,9 @@
             // 
             pbTitleImage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pbTitleImage.Image = Properties.Resources.person;
-            pbTitleImage.Location = new Point(367, 20);
-            pbTitleImage.Margin = new Padding(4, 5, 4, 5);
+            pbTitleImage.Location = new Point(257, 12);
             pbTitleImage.Name = "pbTitleImage";
-            pbTitleImage.Size = new Size(108, 110);
+            pbTitleImage.Size = new Size(76, 66);
             pbTitleImage.SizeMode = PictureBoxSizeMode.StretchImage;
             pbTitleImage.TabIndex = 5;
             pbTitleImage.TabStop = false;
@@ -82,10 +82,9 @@
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI Semibold", 24F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTitle.Location = new Point(483, 42);
-            lblTitle.Margin = new Padding(4, 0, 4, 0);
+            lblTitle.Location = new Point(338, 25);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(310, 65);
+            lblTitle.Size = new Size(208, 45);
             lblTitle.TabIndex = 4;
             lblTitle.Text = "Live Brackets";
             // 
@@ -96,269 +95,283 @@
             // 
             // row4box1
             // 
-            row4box1.Location = new Point(9, 82);
-            row4box1.Margin = new Padding(4, 5, 4, 5);
+            row4box1.Location = new Point(6, 49);
             row4box1.Name = "row4box1";
-            row4box1.Size = new Size(141, 31);
+            row4box1.Size = new Size(100, 23);
             row4box1.TabIndex = 37;
+            row4box1.Visible = false;
             // 
             // row4box2
             // 
-            row4box2.Location = new Point(9, 175);
-            row4box2.Margin = new Padding(4, 5, 4, 5);
+            row4box2.Location = new Point(6, 105);
             row4box2.Name = "row4box2";
-            row4box2.Size = new Size(141, 31);
+            row4box2.Size = new Size(100, 23);
             row4box2.TabIndex = 38;
+            row4box2.Visible = false;
             // 
             // row4box4
             // 
-            row4box4.Location = new Point(9, 362);
-            row4box4.Margin = new Padding(4, 5, 4, 5);
+            row4box4.Location = new Point(6, 217);
             row4box4.Name = "row4box4";
-            row4box4.Size = new Size(141, 31);
+            row4box4.Size = new Size(100, 23);
             row4box4.TabIndex = 40;
+            row4box4.Visible = false;
             // 
             // row4box3
             // 
-            row4box3.Location = new Point(9, 268);
-            row4box3.Margin = new Padding(4, 5, 4, 5);
+            row4box3.Location = new Point(6, 161);
             row4box3.Name = "row4box3";
-            row4box3.Size = new Size(141, 31);
+            row4box3.Size = new Size(100, 23);
             row4box3.TabIndex = 39;
+            row4box3.Visible = false;
             // 
             // row4box8
             // 
-            row4box8.Location = new Point(9, 735);
-            row4box8.Margin = new Padding(4, 5, 4, 5);
+            row4box8.Location = new Point(6, 441);
             row4box8.Name = "row4box8";
-            row4box8.Size = new Size(141, 31);
+            row4box8.Size = new Size(100, 23);
             row4box8.TabIndex = 44;
+            row4box8.Visible = false;
             // 
             // row4box7
             // 
-            row4box7.Location = new Point(9, 642);
-            row4box7.Margin = new Padding(4, 5, 4, 5);
+            row4box7.Location = new Point(6, 385);
             row4box7.Name = "row4box7";
-            row4box7.Size = new Size(141, 31);
+            row4box7.Size = new Size(100, 23);
             row4box7.TabIndex = 43;
+            row4box7.Visible = false;
             // 
             // row4box6
             // 
-            row4box6.Location = new Point(9, 548);
-            row4box6.Margin = new Padding(4, 5, 4, 5);
+            row4box6.Location = new Point(6, 329);
             row4box6.Name = "row4box6";
-            row4box6.Size = new Size(141, 31);
+            row4box6.Size = new Size(100, 23);
             row4box6.TabIndex = 42;
+            row4box6.Visible = false;
             // 
             // row4box5
             // 
-            row4box5.Location = new Point(9, 455);
-            row4box5.Margin = new Padding(4, 5, 4, 5);
+            row4box5.Location = new Point(6, 273);
             row4box5.Name = "row4box5";
-            row4box5.Size = new Size(141, 31);
+            row4box5.Size = new Size(100, 23);
             row4box5.TabIndex = 41;
+            row4box5.Visible = false;
             // 
             // row4box16
             // 
-            row4box16.Location = new Point(969, 735);
-            row4box16.Margin = new Padding(4, 5, 4, 5);
+            row4box16.Location = new Point(678, 441);
             row4box16.Name = "row4box16";
-            row4box16.Size = new Size(141, 31);
+            row4box16.Size = new Size(100, 23);
             row4box16.TabIndex = 52;
+            row4box16.Visible = false;
             // 
             // row4box15
             // 
-            row4box15.Location = new Point(969, 642);
-            row4box15.Margin = new Padding(4, 5, 4, 5);
+            row4box15.Location = new Point(678, 385);
             row4box15.Name = "row4box15";
-            row4box15.Size = new Size(141, 31);
+            row4box15.Size = new Size(100, 23);
             row4box15.TabIndex = 51;
+            row4box15.Visible = false;
             // 
             // row4box14
             // 
-            row4box14.Location = new Point(969, 548);
-            row4box14.Margin = new Padding(4, 5, 4, 5);
+            row4box14.Location = new Point(678, 329);
             row4box14.Name = "row4box14";
-            row4box14.Size = new Size(141, 31);
+            row4box14.Size = new Size(100, 23);
             row4box14.TabIndex = 50;
+            row4box14.Visible = false;
             // 
             // row4box13
             // 
-            row4box13.Location = new Point(969, 455);
-            row4box13.Margin = new Padding(4, 5, 4, 5);
+            row4box13.Location = new Point(678, 273);
             row4box13.Name = "row4box13";
-            row4box13.Size = new Size(141, 31);
+            row4box13.Size = new Size(100, 23);
             row4box13.TabIndex = 49;
+            row4box13.Visible = false;
             // 
             // row4box11
             // 
-            row4box11.Location = new Point(969, 268);
-            row4box11.Margin = new Padding(4, 5, 4, 5);
+            row4box11.Location = new Point(678, 161);
             row4box11.Name = "row4box11";
-            row4box11.Size = new Size(141, 31);
+            row4box11.Size = new Size(100, 23);
             row4box11.TabIndex = 48;
+            row4box11.Visible = false;
             // 
             // row4box10
             // 
-            row4box10.Location = new Point(969, 175);
-            row4box10.Margin = new Padding(4, 5, 4, 5);
+            row4box10.Location = new Point(678, 105);
             row4box10.Name = "row4box10";
-            row4box10.Size = new Size(141, 31);
+            row4box10.Size = new Size(100, 23);
             row4box10.TabIndex = 47;
+            row4box10.Visible = false;
             // 
             // row4box9
             // 
-            row4box9.Location = new Point(969, 82);
-            row4box9.Margin = new Padding(4, 5, 4, 5);
+            row4box9.Location = new Point(678, 49);
             row4box9.Name = "row4box9";
-            row4box9.Size = new Size(141, 31);
+            row4box9.Size = new Size(100, 23);
             row4box9.TabIndex = 46;
+            row4box9.Visible = false;
             // 
             // row4box12
             // 
-            row4box12.Location = new Point(969, 362);
-            row4box12.Margin = new Padding(4, 5, 4, 5);
+            row4box12.Location = new Point(678, 217);
             row4box12.Name = "row4box12";
-            row4box12.Size = new Size(141, 31);
+            row4box12.Size = new Size(100, 23);
             row4box12.TabIndex = 53;
+            row4box12.Visible = false;
             // 
             // row3box4
             // 
-            row3box4.Location = new Point(160, 690);
-            row3box4.Margin = new Padding(4, 5, 4, 5);
+            row3box4.Location = new Point(112, 414);
             row3box4.Name = "row3box4";
-            row3box4.Size = new Size(141, 31);
+            row3box4.Size = new Size(100, 23);
             row3box4.TabIndex = 57;
+            row3box4.Visible = false;
             // 
             // row3box3
             // 
-            row3box3.Location = new Point(160, 498);
-            row3box3.Margin = new Padding(4, 5, 4, 5);
+            row3box3.Location = new Point(112, 299);
             row3box3.Name = "row3box3";
-            row3box3.Size = new Size(141, 31);
+            row3box3.Size = new Size(100, 23);
             row3box3.TabIndex = 56;
+            row3box3.Visible = false;
             // 
             // row3box2
             // 
-            row3box2.Location = new Point(160, 323);
-            row3box2.Margin = new Padding(4, 5, 4, 5);
+            row3box2.Location = new Point(112, 194);
             row3box2.Name = "row3box2";
-            row3box2.Size = new Size(141, 31);
+            row3box2.Size = new Size(100, 23);
             row3box2.TabIndex = 55;
+            row3box2.Visible = false;
             // 
             // row3box1
             // 
-            row3box1.Location = new Point(160, 132);
-            row3box1.Margin = new Padding(4, 5, 4, 5);
+            row3box1.Location = new Point(112, 79);
             row3box1.Name = "row3box1";
-            row3box1.Size = new Size(141, 31);
+            row3box1.Size = new Size(100, 23);
             row3box1.TabIndex = 54;
+            row3box1.Visible = false;
             // 
             // row3box8
             // 
-            row3box8.Location = new Point(817, 690);
-            row3box8.Margin = new Padding(4, 5, 4, 5);
+            row3box8.Location = new Point(572, 414);
             row3box8.Name = "row3box8";
-            row3box8.Size = new Size(141, 31);
+            row3box8.Size = new Size(100, 23);
             row3box8.TabIndex = 61;
+            row3box8.Visible = false;
             // 
             // row3box7
             // 
-            row3box7.Location = new Point(817, 498);
-            row3box7.Margin = new Padding(4, 5, 4, 5);
+            row3box7.Location = new Point(572, 299);
             row3box7.Name = "row3box7";
-            row3box7.Size = new Size(141, 31);
+            row3box7.Size = new Size(100, 23);
             row3box7.TabIndex = 60;
+            row3box7.Visible = false;
             // 
             // row3box6
             // 
-            row3box6.Location = new Point(817, 323);
-            row3box6.Margin = new Padding(4, 5, 4, 5);
+            row3box6.Location = new Point(572, 194);
             row3box6.Name = "row3box6";
-            row3box6.Size = new Size(141, 31);
+            row3box6.Size = new Size(100, 23);
             row3box6.TabIndex = 59;
+            row3box6.Visible = false;
             // 
             // row3box5
             // 
-            row3box5.Location = new Point(817, 132);
-            row3box5.Margin = new Padding(4, 5, 4, 5);
+            row3box5.Location = new Point(572, 79);
             row3box5.Name = "row3box5";
-            row3box5.Size = new Size(141, 31);
+            row3box5.Size = new Size(100, 23);
             row3box5.TabIndex = 58;
+            row3box5.Visible = false;
             // 
             // row2box2
             // 
-            row2box2.Location = new Point(311, 587);
-            row2box2.Margin = new Padding(4, 5, 4, 5);
+            row2box2.Location = new Point(218, 352);
             row2box2.Name = "row2box2";
-            row2box2.Size = new Size(141, 31);
+            row2box2.Size = new Size(100, 23);
             row2box2.TabIndex = 63;
+            row2box2.Visible = false;
             // 
             // row2box1
             // 
-            row2box1.Location = new Point(311, 238);
-            row2box1.Margin = new Padding(4, 5, 4, 5);
+            row2box1.Location = new Point(218, 143);
             row2box1.Name = "row2box1";
-            row2box1.Size = new Size(141, 31);
+            row2box1.Size = new Size(100, 23);
             row2box1.TabIndex = 62;
+            row2box1.Visible = false;
             // 
             // row2box4
             // 
-            row2box4.Location = new Point(666, 587);
-            row2box4.Margin = new Padding(4, 5, 4, 5);
+            row2box4.Location = new Point(466, 352);
             row2box4.Name = "row2box4";
-            row2box4.Size = new Size(141, 31);
+            row2box4.Size = new Size(100, 23);
             row2box4.TabIndex = 65;
+            row2box4.Visible = false;
             // 
             // row2box3
             // 
-            row2box3.Location = new Point(666, 238);
-            row2box3.Margin = new Padding(4, 5, 4, 5);
+            row2box3.Location = new Point(466, 143);
             row2box3.Name = "row2box3";
-            row2box3.Size = new Size(141, 31);
+            row2box3.Size = new Size(100, 23);
             row2box3.TabIndex = 64;
+            row2box3.Visible = false;
             // 
             // row1box1
             // 
-            row1box1.Location = new Point(420, 410);
-            row1box1.Margin = new Padding(4, 5, 4, 5);
+            row1box1.Location = new Point(294, 246);
             row1box1.Name = "row1box1";
-            row1box1.Size = new Size(141, 31);
+            row1box1.Size = new Size(100, 23);
             row1box1.TabIndex = 66;
             // 
             // row1box2
             // 
-            row1box2.Location = new Point(571, 410);
-            row1box2.Margin = new Padding(4, 5, 4, 5);
+            row1box2.Location = new Point(400, 246);
             row1box2.Name = "row1box2";
-            row1box2.Size = new Size(141, 31);
+            row1box2.Size = new Size(100, 23);
             row1box2.TabIndex = 67;
             // 
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
             lblWelcome.ForeColor = SystemColors.ControlDarkDark;
-            lblWelcome.Location = new Point(433, 160);
+            lblWelcome.Location = new Point(303, 96);
+            lblWelcome.Margin = new Padding(2, 0, 2, 0);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(276, 25);
+            lblWelcome.Size = new Size(184, 15);
             lblWelcome.TabIndex = 68;
             lblWelcome.Text = "View the tournament bracket live!";
             // 
             // button1
             // 
-            button1.Location = new Point(498, 658);
+            button1.BackColor = Color.PaleGreen;
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Location = new Point(317, 466);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(137, 63);
+            button1.Size = new Size(150, 38);
             button1.TabIndex = 69;
-            button1.Text = "Continue to Next Game";
-            button1.UseVisualStyleBackColor = true;
+            button1.Text = "Start Next Game";
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
+            // 
+            // btnAutoPlay
+            // 
+            btnAutoPlay.BackColor = Color.Salmon;
+            btnAutoPlay.Location = new Point(355, 508);
+            btnAutoPlay.Margin = new Padding(2);
+            btnAutoPlay.Name = "btnAutoPlay";
+            btnAutoPlay.Size = new Size(75, 30);
+            btnAutoPlay.TabIndex = 70;
+            btnAutoPlay.Text = "Auto-Play";
+            btnAutoPlay.UseVisualStyleBackColor = false;
             // 
             // LiveBracketForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1120, 935);
+            ClientSize = new Size(784, 561);
+            Controls.Add(btnAutoPlay);
             Controls.Add(button1);
             Controls.Add(lblWelcome);
             Controls.Add(row1box2);
@@ -393,7 +406,6 @@
             Controls.Add(row4box1);
             Controls.Add(pbTitleImage);
             Controls.Add(lblTitle);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "LiveBracketForm";
             Text = "LiveBracket";
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
@@ -439,5 +451,6 @@
         private Button autoBtn;
         private Label lblWelcome;
         private Button button1;
+        private Button btnAutoPlay;
     }
 }

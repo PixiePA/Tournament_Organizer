@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,43 +30,47 @@ namespace Tournament_Tracker
             if (numOfMatches == 8)
             {
                 numOfMatches = 8;
-                row4box1.Text = initialMatches[0].TeamA().Name;
-                row4box2.Text = initialMatches[0].TeamB().Name;
-                row4box3.Text = initialMatches[1].TeamA().Name;
-                row4box4.Text = initialMatches[1].TeamB().Name;
-                row4box5.Text = initialMatches[2].TeamA().Name;
-                row4box6.Text = initialMatches[2].TeamB().Name;
-                row4box7.Text = initialMatches[3].TeamA().Name;
-                row4box8.Text = initialMatches[3].TeamB().Name;
-                row4box9.Text = initialMatches[4].TeamA().Name;
-                row4box10.Text = initialMatches[4].TeamB().Name;
-                row4box11.Text = initialMatches[5].TeamA().Name;
-                row4box12.Text = initialMatches[5].TeamB().Name;
-                row4box13.Text = initialMatches[6].TeamA().Name;
-                row4box14.Text = initialMatches[6].TeamB().Name;
-                row4box15.Text = initialMatches[7].TeamA().Name;
-                row4box16.Text = initialMatches[7].TeamB().Name;
+                for (int i = 0; i <= 16; i += 2)
+                {
+                    Control control = Controls.Find("row4box" + i, true).FirstOrDefault();
+                    control.Text = initialMatches[i].TeamA().Name;
+                    control.Visible = true;
+                }
+                for (int i = 1; i <= 16; i += 2)
+                {
+                    Control control = Controls.Find("row4box" + i, true).FirstOrDefault();
+                    control.Text = initialMatches[i].TeamB().Name;
+                    control.Visible = true;
+                }
             }
             else if (numOfMatches == 4)
             {
                 numOfMatches = 4;
-                row3box1.Text = initialMatches[0].TeamA().Name;
-                row3box2.Text = initialMatches[0].TeamB().Name;
-                row3box3.Text = initialMatches[1].TeamA().Name;
-                row3box4.Text = initialMatches[1].TeamB().Name;
-                row3box5.Text = initialMatches[2].TeamA().Name;
-                row3box6.Text = initialMatches[2].TeamB().Name;
-                row3box7.Text = initialMatches[3].TeamA().Name;
-                row3box8.Text = initialMatches[3].TeamB().Name;
+                for (int i = 0; i <= 8; i += 2)
+                {
+                    Control control = this.Controls.Find("row3box" + i, true).FirstOrDefault();
+                    control.Text = initialMatches[i].TeamA().Name;
+                    control.Visible = true;
+                }
+                for (int i = 1; i <= 8; i += 2)
+                {
+                    Control control = this.Controls.Find("row3box" + i, true).FirstOrDefault();
+                    control.Text = initialMatches[i].TeamB().Name;
+                    control.Visible = true;
+                }
 
             }
             else if (numOfMatches == 2)
             {
                 numOfMatches = 2;
                 row2box1.Text = initialMatches[0].TeamA().Name;
+                row2box1.Visible = true;
                 row2box2.Text = initialMatches[0].TeamB().Name;
+                row2box2.Visible = true;
                 row2box3.Text = initialMatches[1].TeamA().Name;
+                row2box3.Visible = true;
                 row2box4.Text = initialMatches[1].TeamB().Name;
+                row2box4.Visible = true;
             }
         }
 
@@ -148,15 +153,13 @@ namespace Tournament_Tracker
         {
             int round = currentTournament.Bracket.CurrentRound;
             List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
-            foreach (Match _match in matchesInRound)
+            foreach (Match match in matchesInRound)
             {
-                if (_match.IsMatchOver())
+                if (!match.IsMatchOver())
                 {
-                    continue;
-                }
-                else
-                {
-                    MinigameForm nForm = new MinigameForm(_match);
+                    this.Hide();
+                    MinigameForm mForm = new MinigameForm(match);
+                    mForm.Show();
                     break;
                 }
             }

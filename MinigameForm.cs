@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Tournament_Tracker
             InitializeComponent();
 
             LoadTeam(match.TeamA(), lbTeam1Players);
-            LoadTeam(match.TeamB(), lbTeam1Players);
+            LoadTeam(match.TeamB(), lbTeam2Players);
 
             LoadMatch();
         }
@@ -28,7 +29,6 @@ namespace Tournament_Tracker
         private void LoadTeam(Team team, ListBox listBox)
         {
             List<Player> players = team.GetPlayers();
-
             foreach (Player player in players)
             {
                 listBox.Items.Add(player);
@@ -80,7 +80,7 @@ namespace Tournament_Tracker
                 // Player 2 wins
                 lblWinner.Text = player2.Name + " Won That Round!";
                 lbTeam1Players.Items.RemoveAt(0);
-
+                
                 // Check if there are any players left of team 1
                 if (lbTeam1Players.Items.Count == 0)
                 {

@@ -49,7 +49,7 @@ namespace Tournament_Tracker
         {
             IEnumerable<Match> matches =
                     from match in DatabaseManager.context.Matches
-                    where match.RoundNumber == round
+                    where match.RoundNumber == round && match.BracketID == bracketID
                     orderby match.RoundPosition
                     select match;
             return matches.ToList();
