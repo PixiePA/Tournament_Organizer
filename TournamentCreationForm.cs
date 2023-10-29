@@ -65,7 +65,7 @@ namespace Tournament_Tracker
         private void InputValidation()
         {
             // Check amount of teams selected and that the tournament name is selected
-            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 12 || lbTeamFinal.Items.Count == 16) && lblTournamentName.Text.Length > 0)
+            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 12 || lbTeamFinal.Items.Count == 16) && tbTournamentName.Text.Length > 0)
             {
                 lblError.Visible = false;
                 btnSubmit.Visible = true;
@@ -78,14 +78,36 @@ namespace Tournament_Tracker
             }
 
         }
-
+        // Create a new tournament depending on the type selected. If there is no type selected then return the error message.
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Create tournament with tournament name, type and teams selected
             Tournament tournament = new Tournament();
-            tournament.TournamentName = lblTournamentName.Text;
+            tournament.TournamentName = tbTournamentName.Text;
+
+            if (cbTournamentType.SelectedIndex == 0 && tbTournamentName.Text.Length > 0)
+            {
+                WinnersBracket bracket = new WinnersBracket();
+                bracket.Tournament = tournament;
+                DatabaseManager.context.WinnersBrackets.Add(bracket);
+            }
+            else if (cbTournamentType.SelectedIndex == 1 && tbTournamentName.Text.Length > 0)
+            {
+                LosersBracket bracket = new LosersBracket();
+                bracket.Tournament = tournament;
+                DatabaseManager.context.LosersBrackets.Add(bracket);
+            }
+            else
+            {
+                lblError.Visible = true;
+                return;
+            }
 
             DatabaseManager.context.Tournaments.Add(tournament);
+            DatabaseManager.Save();
+
+            this.Close();
+            menu.Show();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

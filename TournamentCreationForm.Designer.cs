@@ -108,6 +108,7 @@
             // cbTournamentType
             // 
             cbTournamentType.FormattingEnabled = true;
+            cbTournamentType.Items.AddRange(new object[] { "Single Elimination", "Double Elimination" });
             cbTournamentType.Location = new Point(187, 234);
             cbTournamentType.Name = "cbTournamentType";
             cbTournamentType.Size = new Size(400, 29);
@@ -216,11 +217,11 @@
             lblError.AutoSize = true;
             lblError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(191, 442);
+            lblError.Location = new Point(166, 442);
             lblError.Name = "lblError";
-            lblError.Size = new Size(403, 15);
+            lblError.Size = new Size(452, 15);
             lblError.TabIndex = 31;
-            lblError.Text = "You must select 4, 8, 12 or 16 teams. Tournament name must not be empty.";
+            lblError.Text = "You must select 4, 8, 12 or 16 teams. Tournament name and type must not be empty.";
             lblError.Visible = false;
             // 
             // TournamentCreationForm
