@@ -25,10 +25,10 @@ namespace Tournament_Tracker
         public bool PlayAll { get => playAll; set => playAll = value; }
 
         //Foreign key of bracket match is held in
-        [ForeignKey(nameof(Bracket))]
-        public int BracketID { get => bracketID; set => bracketID = value; }
+        /*[ForeignKey(nameof(Bracket))]
+        public int BracketID { get => bracketID; set => bracketID = value; }*/
 
-        public Bracket Bracket { get; set; }
+        /*public Bracket Bracket { get; set; }*/
 
         //Where and when the match is run in the bracket
         public int RoundPosition { get => roundPosition; set => roundPosition = value; }

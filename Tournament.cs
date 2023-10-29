@@ -28,6 +28,7 @@ namespace Tournament_Tracker
             }
         }
 
+
         public List<TournamentRegistration> AllRegistrants
         {
             get
@@ -40,16 +41,18 @@ namespace Tournament_Tracker
             }
         }
 
+
         public Bracket Bracket
         {
             get
             {
                 return
-                    (from brackets in DatabaseManager.context.Brackets
-                    where brackets.TournamentID == tournamentID
+                    (from brackets in DatabaseManager.context.WinnersBrackets
+                     where brackets.TournamentID == tournamentID
                     select brackets).First();
             }
         }
+
 
         public TournamentRegistration Winner
         {
