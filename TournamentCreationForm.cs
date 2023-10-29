@@ -82,6 +82,10 @@ namespace Tournament_Tracker
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Create tournament with tournament name, type and teams selected
+            Tournament tournament = new Tournament();
+            tournament.TournamentName = lblTournamentName.Text;
+
+            DatabaseManager.context.Tournaments.Add(tournament);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

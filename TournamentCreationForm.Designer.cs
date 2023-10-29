@@ -216,11 +216,11 @@
             lblError.AutoSize = true;
             lblError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(294, 442);
+            lblError.Location = new Point(191, 442);
             lblError.Name = "lblError";
-            lblError.Size = new Size(196, 15);
+            lblError.Size = new Size(403, 15);
             lblError.TabIndex = 31;
-            lblError.Text = "You must select 4, 8, 12 or 16 teams.\r\n";
+            lblError.Text = "You must select 4, 8, 12 or 16 teams. Tournament name must not be empty.";
             lblError.Visible = false;
             // 
             // TournamentCreationForm
