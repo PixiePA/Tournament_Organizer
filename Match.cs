@@ -133,7 +133,7 @@ namespace Tournament_Tracker
             }
         }
 
-        private void SetupMatch(Team teamA, Team teamB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
+        private void SetupMatch(Team teamA, Team teamB, int roundPosition, int roundNumber, int maxRounds = 1, bool playAllRounds = false)
         {
             MatchRegistration registrationA = new MatchRegistration() { Team = teamA, IsAlpha = true, Match = this };
             MatchRegistration registrationB = new MatchRegistration() { Team = teamB, IsAlpha = false, Match = this };
@@ -160,7 +160,7 @@ namespace Tournament_Tracker
             SetupMatch(RegistrationA.Team, RegistrationB.Team, roundPosition, roundNumber, maxRounds, playAllRounds);
         }
 
-        public Match(TournamentRegistration RegistrationA, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
+        public Match(TournamentRegistration RegistrationA, int roundPosition, int roundNumber, int maxRounds = 1, bool playAllRounds = false)
         {
             MatchRegistration registrationA = new MatchRegistration() { Team = RegistrationA.Team, IsAlpha = true, Match = this };
             this.maxRounds = maxRounds;

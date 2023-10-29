@@ -49,7 +49,6 @@ namespace Tournament_Tracker
             DatabaseManager.Save();
 
             HasLosersBracket = true;
-
         }
 
         public void SeedBracket(List<TournamentRegistration> Competitors)

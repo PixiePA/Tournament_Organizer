@@ -57,7 +57,7 @@
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(712, 42);
             lblWelcome.TabIndex = 13;
-            lblWelcome.Text = "Welcome to Tournament Creation! Please choose a tournament name, type, and the teams competing.\r\nPlease note that the amount of teams must be 4, 8, 12, or 16.\r\n";
+            lblWelcome.Text = "Welcome to Tournament Creation! Please choose a tournament name, type, and the teams competing.\r\nPlease note that once you create a tournament, it will automatically start. Have Fun!\r\n";
             // 
             // pbTitleImage
             // 

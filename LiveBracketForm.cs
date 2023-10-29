@@ -70,8 +70,7 @@ namespace Tournament_Tracker
         private void LoadMatches(Match match)
         {
 
-            
-            List<Match> initialMatches = currentTournament.Bracket.Matches;
+            List<Match> initialMatches = currentTournament.Bracket.Matches.ToList();
             int numOfMatches = initialMatches.Count;
             if(numOfMatches == 8)
             {
