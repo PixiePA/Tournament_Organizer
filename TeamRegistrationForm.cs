@@ -16,6 +16,8 @@ namespace Tournament_Tracker
         private int numOfPlayers;
         private Button currentBtn;
         private Form1 menu;
+        private List<Player> players;
+        private List<Team> teams;
 
         public TeamRegistrationForm(Form1 menu)
         {
@@ -24,6 +26,19 @@ namespace Tournament_Tracker
             numOfPlayers = 4;
             btn4.BackColor = SystemColors.ControlDark;
             this.menu = menu;
+            players = DatabaseManager.context.Players.ToList();
+            teams = DatabaseManager.context.Teams.ToList();
+        }
+
+        private void TeamRegistrationForm_Load(object sender, EventArgs e)
+        {
+            foreach (Player player in players)
+            {
+                cbPlayer1.Items.Add(player);
+                cbPlayer2.Items.Add(player);
+                cbPlayer3.Items.Add(player);
+                cbPlayer4.Items.Add(player);
+            }
         }
 
         // Handle button clicks to display number of combo boxes and highlight buttons
@@ -74,16 +89,12 @@ namespace Tournament_Tracker
         // Toggle visibility of player selection combo boxes
         private void TogglePlayerSelect(int btnNumber)
         {
-            // Reset all visible states of the player number buttons and labels
-            cbPlayer1.Visible = false;
-            lblPlayer1.Visible = false;
-            cbPlayer2.Visible = false;
-            lblPlayer2.Visible = false;
-            cbPlayer3.Visible = false;
-            lblPlayer3.Visible = false;
-            cbPlayer4.Visible = false;
-            lblPlayer4.Visible = false;
-                
+            // Reset all visible states of the player number buttons/labels, and reset comboboxes to avoid hidden boxes still triggering 
+            cbPlayer1.Visible = false; cbPlayer1.SelectedIndex = -1; lblPlayer1.Visible = false;
+            cbPlayer2.Visible = false; cbPlayer2.SelectedIndex = -1; lblPlayer2.Visible = false;
+            cbPlayer3.Visible = false; cbPlayer3.SelectedIndex = -1; lblPlayer3.Visible = false;
+            cbPlayer4.Visible = false; cbPlayer4.SelectedIndex = -1; lblPlayer4.Visible = false;
+
             // Check that comboboxes aren't null and toggle visibility on all player choice boxes up to the btn number
             for (int i = 1; i <= btnNumber; i++)
             {
@@ -136,19 +147,39 @@ namespace Tournament_Tracker
             PlayerDuplicates();
         }
 
+        // Check if team name has already been taken
+        private void tbTeamName_Leave(object sender, EventArgs e)
+        {
+            // For each team, check if the name exists. If it does, display error message, disable the create button and exit the function.
+            foreach (Team team in teams)
+            {
+                if(team.Name == tbTeamName.Text)
+                {
+                    lblError.Visible = true; 
+                    lblError.Text = String.Format("The name {0} has already been taken", team.Name);
+                    btnSubmit.Visible = false;
+                    return;
+                }
+
+                // If the name is unique, remove error message and show create button.
+                lblError.Visible = false;
+                btnSubmit.Visible = true;
+            }
+        }
+
         // Create a new team based on the number of players selected, or show an error message
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Create team with the players selected and add the team to the database
             //
-            switch(numOfPlayers)
+            switch (numOfPlayers)
             {
                 case 1:
-                    if(tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1)
+                    if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1)
                     {
                         Team team = new Team(tbTeamName.Text);
-                        team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
                         DatabaseManager.context.Teams.Add(team);
+                        team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
                         DatabaseManager.Save();
 
                         this.Close();
@@ -164,9 +195,9 @@ namespace Tournament_Tracker
                     if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1 && cbPlayer2.SelectedIndex != -1)
                     {
                         Team team = new Team(tbTeamName.Text);
+                        DatabaseManager.context.Teams.Add(team);
                         team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
                         team.RegisterToTeam(cbPlayer2.SelectedItem as Player);
-                        DatabaseManager.context.Teams.Add(team);
                         DatabaseManager.Save();
 
                         this.Close();
@@ -182,10 +213,10 @@ namespace Tournament_Tracker
                     if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1 && cbPlayer2.SelectedIndex != -1 && cbPlayer3.SelectedIndex != -1)
                     {
                         Team team = new Team(tbTeamName.Text);
+                        DatabaseManager.context.Teams.Add(team);
                         team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
                         team.RegisterToTeam(cbPlayer2.SelectedItem as Player);
                         team.RegisterToTeam(cbPlayer3.SelectedItem as Player);
-                        DatabaseManager.context.Teams.Add(team);
                         DatabaseManager.Save();
 
                         this.Close();
@@ -201,11 +232,11 @@ namespace Tournament_Tracker
                     if (tbTeamName.Text.Length > 0 && cbPlayer1.SelectedIndex != -1 && cbPlayer2.SelectedIndex != -1 && cbPlayer3.SelectedIndex != -1 && cbPlayer4.SelectedIndex != -1)
                     {
                         Team team = new Team(tbTeamName.Text);
+                        DatabaseManager.context.Teams.Add(team);
                         team.RegisterToTeam(cbPlayer1.SelectedItem as Player);
                         team.RegisterToTeam(cbPlayer2.SelectedItem as Player);
                         team.RegisterToTeam(cbPlayer3.SelectedItem as Player);
                         team.RegisterToTeam(cbPlayer4.SelectedItem as Player);
-                        DatabaseManager.context.Teams.Add(team);
                         DatabaseManager.Save();
 
                         this.Close();

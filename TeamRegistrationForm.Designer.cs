@@ -50,7 +50,9 @@
             btnCancel = new Button();
             btnSubmit = new Button();
             lblError = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // pbTitleImage
@@ -80,6 +82,7 @@
             tbTeamName.Name = "tbTeamName";
             tbTeamName.Size = new Size(300, 29);
             tbTeamName.TabIndex = 6;
+            tbTeamName.Leave += tbTeamName_Leave;
             // 
             // lblTeamName
             // 
@@ -254,22 +257,39 @@
             // 
             // lblError
             // 
+            lblError.Anchor = AnchorStyles.None;
             lblError.AutoSize = true;
             lblError.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(261, 421);
+            lblError.Location = new Point(261, 423);
+            lblError.Margin = new Padding(3, 300, 3, 0);
             lblError.Name = "lblError";
             lblError.Size = new Size(262, 15);
             lblError.TabIndex = 27;
             lblError.Text = "You can't select the same player more than once";
+            lblError.TextAlign = ContentAlignment.MiddleCenter;
             lblError.Visible = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(lblError, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(784, 561);
+            tableLayoutPanel1.TabIndex = 28;
             // 
             // TeamRegistrationForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(784, 561);
-            Controls.Add(lblError);
             Controls.Add(btnCancel);
             Controls.Add(btnSubmit);
             Controls.Add(cbPlayer4);
@@ -291,12 +311,16 @@
             Controls.Add(lblTeamName);
             Controls.Add(pbTitleImage);
             Controls.Add(lblTitle);
+            Controls.Add(tableLayoutPanel1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "TeamRegistrationForm";
             Text = "Ultimate Flipper - Team Registration";
             FormClosing += TeamRegistrationForm_FormClosing;
+            Load += TeamRegistrationForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -325,5 +349,6 @@
         private Button btnCancel;
         private Button btnSubmit;
         private Label lblError;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }
