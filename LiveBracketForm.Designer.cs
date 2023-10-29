@@ -62,6 +62,7 @@
             row1box1 = new TextBox();
             row1box2 = new TextBox();
             lblWelcome = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -343,11 +344,22 @@
             lblWelcome.TabIndex = 68;
             lblWelcome.Text = "View the tournament bracket live!";
             // 
+            // button1
+            // 
+            button1.Location = new Point(498, 658);
+            button1.Name = "button1";
+            button1.Size = new Size(137, 63);
+            button1.TabIndex = 69;
+            button1.Text = "Continue to Next Game";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // LiveBracketForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1120, 935);
+            Controls.Add(button1);
             Controls.Add(lblWelcome);
             Controls.Add(row1box2);
             Controls.Add(row1box1);
@@ -426,5 +438,6 @@
         private TextBox row1box2;
         private Button autoBtn;
         private Label lblWelcome;
+        private Button button1;
     }
 }
