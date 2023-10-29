@@ -30,6 +30,7 @@ namespace Tournament_Tracker
             teams = DatabaseManager.context.Teams.ToList();
         }
 
+        // Add all the players to the player combo boxes on form load
         private void TeamRegistrationForm_Load(object sender, EventArgs e)
         {
             foreach (Player player in players)
@@ -160,11 +161,10 @@ namespace Tournament_Tracker
                     btnSubmit.Visible = false;
                     return;
                 }
-
-                // If the name is unique, remove error message and show create button.
-                lblError.Visible = false;
-                btnSubmit.Visible = true;
             }
+            // If the name is unique, remove error message and show create button.
+            lblError.Visible = false;
+            btnSubmit.Visible = true;
         }
 
         // Create a new team based on the number of players selected, or show an error message
@@ -256,12 +256,14 @@ namespace Tournament_Tracker
             }
         }
 
+        // Close the form and open the menu back up
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
             menu.Show();
         }
 
+        // Clean up form on close
         private void TeamRegistrationForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ResetButtons();

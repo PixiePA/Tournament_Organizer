@@ -24,7 +24,7 @@ namespace Tournament_Tracker
 
         private void TournamentCreationForm_Load(object sender, EventArgs e)
         {
-            foreach(Team team in teams)
+            foreach (Team team in teams)
             {
                 lbTeamSelection.Items.Add(team);
             }
@@ -33,7 +33,7 @@ namespace Tournament_Tracker
         // Add the teams selected in the list box
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            foreach (var team in lbTeamSelection.SelectedItems)
+            if ((lbTeamSelection.SelectedItem as Team) is Team team)
             {
                 // Check that the team being added isn't already there and that there's still under 16 teams
                 if (!lbTeamFinal.Items.Contains(team) && lbTeamFinal.Items.Count < 16)
@@ -42,36 +42,41 @@ namespace Tournament_Tracker
                 }
             }
 
+            // Clear selection when adding a team for aesthetic purposes
+            lbTeamSelection.SelectedItems.Clear();
+
             // Validate tournament size
-            TeamValidation();
+            InputValidation();
         }
 
-        // Remove teams selected when remove button is clicked
+        // Remove the team selected when remove button is clicked
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            foreach (var team in lbTeamSelection.SelectedItems)
+            if ((lbTeamFinal.SelectedItem as Team) is Team team)
             {
                 lbTeamFinal.Items.Remove(team);
             }
 
             // Validate tournament size
-            TeamValidation();
+            InputValidation();
         }
 
         // Validate the number of teams
-        private void TeamValidation()
+        private void InputValidation()
         {
-            // Check amount of teams selected
-            if (lbTeamFinal.Items.Count != 4 || lbTeamFinal.Items.Count != 8 || lbTeamFinal.Items.Count != 12 || lbTeamFinal.Items.Count != 16)
+            // Check amount of teams selected and that the tournament name is selected
+            if ((lbTeamFinal.Items.Count == 4 || lbTeamFinal.Items.Count == 8 || lbTeamFinal.Items.Count == 12 || lbTeamFinal.Items.Count == 16) && lblTournamentName.Text.Length > 0)
+            {
+                lblError.Visible = false;
+                btnSubmit.Visible = true;
+            }
+            else
             {
                 lblError.Visible = true;
                 btnSubmit.Visible = false;
-                return;
+
             }
 
-            // Display submit button and hide error message if there is a valid amount of teams
-            lblError.Visible = false;
-            btnSubmit.Visible = true;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
