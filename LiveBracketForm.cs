@@ -156,7 +156,7 @@ namespace Tournament_Tracker
                 }
                 else
                 {
-                    MinigameForm nForm = new MinigameForm(_match.TeamA, _match.TeamB);
+                    MinigameForm nForm = new MinigameForm(_match);
                     break;
                 }
             }
