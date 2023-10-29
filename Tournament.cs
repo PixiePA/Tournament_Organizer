@@ -94,6 +94,7 @@ namespace Tournament_Tracker
                     {
                         player.Points += teamsBeat;
                         player.Points -= teamsLostTo;
+                        DatabaseManager.UpdateEntity(player);
                     }
                 }
 
