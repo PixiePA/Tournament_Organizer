@@ -143,5 +143,24 @@ namespace Tournament_Tracker
             }
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int round = currentTournament.Bracket.CurrentRound;
+            List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+            foreach (Match _match in matchesInRound)
+            {
+                if (_match.IsMatchOver())
+                {
+                    continue;
+                }
+                else
+                {
+                    MinigameForm nForm = new MinigameForm(_match.TeamA, _match.TeamB);
+                    break;
+                }
+            }
+
+        }
     }
 }
