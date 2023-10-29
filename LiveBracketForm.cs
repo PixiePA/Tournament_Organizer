@@ -70,9 +70,14 @@ namespace Tournament_Tracker
         private void LoadMatches(Match match)
         {
 
-            Database.
-            List<Match> initialMatches = Tournament.Bracket.Matches;
-            len.matchesList; // to determine how many boxes are populated
+            
+            List<Match> initialMatches = currentTournament.Bracket.Matches;
+            int numOfMatches = initialMatches.Count;
+            if(numOfMatches == 8)
+            {
+
+            }
+            //len.matchesList; // to determine how many boxes are populated
            // List<Match> Matches
 
 
