@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -86,7 +87,6 @@ namespace Tournament_Tracker
             tournament.TournamentName = tbTournamentName.Text;
             WinnersBracket bracket = new WinnersBracket();
 
-
             // Create single elim or double elim tournament depending on selection and if name has been inputted.
             if (cbTournamentType.SelectedIndex == 0 && tbTournamentName.Text.Length > 0)
             {
@@ -116,7 +116,6 @@ namespace Tournament_Tracker
             }
 
             bracket.SeedBracket(tournament.AllRegistrants);
-
             DatabaseManager.Save();
 
             this.Close();

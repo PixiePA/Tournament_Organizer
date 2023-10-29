@@ -30,13 +30,20 @@
         {
             pbTitleImage = new PictureBox();
             lblTitle = new Label();
-            btnView = new Button();
-            btnEdit = new Button();
             cbTeams = new ComboBox();
             lblChooseTeam = new Label();
             lblTeamName = new Label();
-            lblPlayers = new Label();
             lblPlayerInfo = new Label();
+            tbName = new TextBox();
+            lblPlayers = new Label();
+            lbPlayers = new ListBox();
+            lbAllPlayers = new ListBox();
+            lblAllPlayers = new Label();
+            btnAdd = new Button();
+            btnCancel = new Button();
+            btnSave = new Button();
+            lblArrow = new Label();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -61,38 +68,19 @@
             lblTitle.TabIndex = 13;
             lblTitle.Text = "Team Edit / View";
             // 
-            // btnView
-            // 
-            btnView.Location = new Point(163, 188);
-            btnView.Name = "btnView";
-            btnView.Size = new Size(150, 30);
-            btnView.TabIndex = 15;
-            btnView.Text = "View Team";
-            btnView.UseVisualStyleBackColor = true;
-            btnView.Click += btnView_Click;
-            // 
-            // btnEdit
-            // 
-            btnEdit.Location = new Point(471, 188);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(150, 30);
-            btnEdit.TabIndex = 16;
-            btnEdit.Text = "Edit Team/Players";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
-            // 
             // cbTeams
             // 
             cbTeams.FormattingEnabled = true;
-            cbTeams.Location = new Point(303, 131);
+            cbTeams.Location = new Point(186, 149);
             cbTeams.Name = "cbTeams";
             cbTeams.Size = new Size(300, 29);
             cbTeams.TabIndex = 18;
+            cbTeams.SelectedIndexChanged += cbTeams_SelectedIndexChanged;
             // 
             // lblChooseTeam
             // 
             lblChooseTeam.AutoSize = true;
-            lblChooseTeam.Location = new Point(181, 135);
+            lblChooseTeam.Location = new Point(64, 149);
             lblChooseTeam.Name = "lblChooseTeam";
             lblChooseTeam.Size = new Size(116, 21);
             lblChooseTeam.TabIndex = 17;
@@ -101,22 +89,12 @@
             // lblTeamName
             // 
             lblTeamName.AutoSize = true;
-            lblTeamName.Location = new Point(163, 259);
+            lblTeamName.Location = new Point(64, 209);
             lblTeamName.Name = "lblTeamName";
-            lblTeamName.Size = new Size(126, 21);
+            lblTeamName.Size = new Size(92, 21);
             lblTeamName.TabIndex = 19;
-            lblTeamName.Text = "Team Name: XXX";
+            lblTeamName.Text = "Team name:";
             lblTeamName.Visible = false;
-            // 
-            // lblPlayers
-            // 
-            lblPlayers.AutoSize = true;
-            lblPlayers.Location = new Point(163, 319);
-            lblPlayers.Name = "lblPlayers";
-            lblPlayers.Size = new Size(63, 21);
-            lblPlayers.TabIndex = 21;
-            lblPlayers.Text = "Players:";
-            lblPlayers.Visible = false;
             // 
             // lblPlayerInfo
             // 
@@ -127,24 +105,133 @@
             lblPlayerInfo.TabIndex = 22;
             lblPlayerInfo.Visible = false;
             // 
+            // tbName
+            // 
+            tbName.Location = new Point(162, 206);
+            tbName.Name = "tbName";
+            tbName.Size = new Size(324, 29);
+            tbName.TabIndex = 23;
+            tbName.Visible = false;
+            // 
+            // lblPlayers
+            // 
+            lblPlayers.AutoSize = true;
+            lblPlayers.Location = new Point(483, 270);
+            lblPlayers.Name = "lblPlayers";
+            lblPlayers.Size = new Size(120, 21);
+            lblPlayers.TabIndex = 21;
+            lblPlayers.Text = "Current players:";
+            lblPlayers.Visible = false;
+            // 
+            // lbPlayers
+            // 
+            lbPlayers.FormattingEnabled = true;
+            lbPlayers.ItemHeight = 21;
+            lbPlayers.Location = new Point(483, 294);
+            lbPlayers.Name = "lbPlayers";
+            lbPlayers.Size = new Size(245, 151);
+            lbPlayers.TabIndex = 24;
+            lbPlayers.Visible = false;
+            // 
+            // lbAllPlayers
+            // 
+            lbAllPlayers.FormattingEnabled = true;
+            lbAllPlayers.ItemHeight = 21;
+            lbAllPlayers.Location = new Point(64, 293);
+            lbAllPlayers.Name = "lbAllPlayers";
+            lbAllPlayers.Size = new Size(245, 151);
+            lbAllPlayers.TabIndex = 26;
+            lbAllPlayers.Visible = false;
+            // 
+            // lblAllPlayers
+            // 
+            lblAllPlayers.AutoSize = true;
+            lblAllPlayers.Location = new Point(64, 269);
+            lblAllPlayers.Name = "lblAllPlayers";
+            lblAllPlayers.Size = new Size(85, 21);
+            lblAllPlayers.TabIndex = 25;
+            lblAllPlayers.Text = "All players:";
+            lblAllPlayers.UseMnemonic = false;
+            lblAllPlayers.Visible = false;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(347, 355);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(100, 30);
+            btnAdd.TabIndex = 28;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Visible = false;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.BackColor = Color.LightCoral;
+            btnCancel.Location = new Point(236, 499);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(150, 50);
+            btnCancel.TabIndex = 30;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = false;
+            btnCancel.Click += btnCancel_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.BackColor = Color.PaleGreen;
+            btnSave.Location = new Point(414, 499);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(150, 50);
+            btnSave.TabIndex = 29;
+            btnSave.Text = "Save Changes";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
+            // 
+            // lblArrow
+            // 
+            lblArrow.AutoSize = true;
+            lblArrow.Location = new Point(347, 331);
+            lblArrow.Name = "lblArrow";
+            lblArrow.Size = new Size(105, 21);
+            lblArrow.TabIndex = 31;
+            lblArrow.Text = "-------------->";
+            lblArrow.Visible = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(190, 102);
+            label1.Name = "label1";
+            label1.Size = new Size(379, 21);
+            label1.TabIndex = 32;
+            label1.Text = "Here you can change a team's name and add players!";
+            // 
             // TeamViewEditForm
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 561);
+            Controls.Add(label1);
+            Controls.Add(lblArrow);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSave);
+            Controls.Add(btnAdd);
+            Controls.Add(lbAllPlayers);
+            Controls.Add(lblAllPlayers);
+            Controls.Add(lbPlayers);
+            Controls.Add(tbName);
             Controls.Add(lblPlayerInfo);
             Controls.Add(lblPlayers);
             Controls.Add(lblTeamName);
             Controls.Add(cbTeams);
             Controls.Add(lblChooseTeam);
-            Controls.Add(btnEdit);
-            Controls.Add(btnView);
             Controls.Add(pbTitleImage);
             Controls.Add(lblTitle);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "TeamViewEditForm";
             Text = "Ultimate Flippers - View / Edit";
+            FormClosing += TeamViewEditForm_FormClosing;
             Load += TeamViewEditForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).EndInit();
             ResumeLayout(false);
@@ -155,12 +242,19 @@
 
         private PictureBox pbTitleImage;
         private Label lblTitle;
-        private Button btnView;
-        private Button btnEdit;
         private ComboBox cbTeams;
         private Label lblChooseTeam;
         private Label lblTeamName;
-        private Label lblPlayers;
         private Label lblPlayerInfo;
+        private TextBox tbName;
+        private Label lblPlayers;
+        private ListBox lbPlayers;
+        private ListBox lbAllPlayers;
+        private Label lblAllPlayers;
+        private Button btnAdd;
+        private Button btnCancel;
+        private Button btnSave;
+        private Label label1;
+        private Label lblArrow;
     }
 }
