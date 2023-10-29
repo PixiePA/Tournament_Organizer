@@ -65,7 +65,7 @@ namespace Tournament_Tracker
             {
                 try
                 {
-                    foreach (var playerKey in playerRegistations)
+                    foreach (int playerKey in playerRegistations)
                     {
                         Player player = DatabaseManager.context.Players.Find(playerKey);
 

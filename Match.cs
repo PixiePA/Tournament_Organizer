@@ -38,12 +38,14 @@ namespace Tournament_Tracker
 
         public Team TeamA()
         {
-            return DatabaseManager.context.MatchRegistrations.Find(true, matchID).Team;
+            int teamID = DatabaseManager.context.MatchRegistrations.Find(true, matchID).TeamID;
+            return DatabaseManager.context.Teams.Find(teamID);
         }
 
         public Team TeamB()
         {
-            return DatabaseManager.context.MatchRegistrations.Find(false, matchID).Team;
+            int teamID = DatabaseManager.context.MatchRegistrations.Find(false, matchID).TeamID;
+            return DatabaseManager.context.Teams.Find(teamID);
         }
 
         //Functions for reporting a win
