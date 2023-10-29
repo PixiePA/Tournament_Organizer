@@ -72,7 +72,35 @@ namespace Tournament_Tracker
 
         public void AddScores()
         {
+            var grpPlacements = Placements
+               .GroupBy(registration => registration.Wins, registration => registration.Team, (team, teams) => new
+               {
+                   Team = team,
 
+                   TeamsInRank = teams.Count(),
+
+                   Results = teams
+
+               });
+
+            int teamsBeat = Placements.Count();
+            int teamsLostTo = 0;
+
+            foreach (var rank in grpPlacements)
+            {
+                foreach (var team in rank.Results)
+                {
+                    foreach (Player player in team.GetPlayers())
+                    {
+                        player.Points += teamsBeat;
+                        player.Points -= teamsLostTo;
+                        DatabaseManager.UpdateEntity(player);
+                    }
+                }
+
+                teamsBeat -= rank.TeamsInRank;
+                teamsLostTo += rank.TeamsInRank;
+            }
         }
     }
 }
