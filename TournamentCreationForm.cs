@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -85,7 +86,6 @@ namespace Tournament_Tracker
             Tournament tournament = new Tournament();
             tournament.TournamentName = tbTournamentName.Text;
             WinnersBracket bracket = new WinnersBracket();
-
 
             // Create single elim or double elim tournament depending on selection and if name has been inputted.
             if (cbTournamentType.SelectedIndex == 0 && tbTournamentName.Text.Length > 0)
