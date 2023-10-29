@@ -151,6 +151,12 @@ namespace Tournament_Tracker
 
         private void button1_Click(object sender, EventArgs e)
         {
+            PlayMatch();
+
+        }
+
+        private void PlayMatch()
+        {
             int round = currentTournament.Bracket.CurrentRound;
             List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
             foreach (Match match in matchesInRound)
@@ -160,12 +166,15 @@ namespace Tournament_Tracker
                     this.Hide();
                     MinigameForm mForm = new MinigameForm(this, match);
                     mForm.Show();
-                    break;
+                    return;
                 }
-                currentTournament.Bracket.BeginNextRound();
-                UpdateLiveBracket();
+
             }
 
+            currentTournament.Bracket.BeginNextRound();
+            UpdateLiveBracket();
+
+            PlayMatch();
         }
 
         private void LiveBracketForm_Activated(object sender, EventArgs e)
