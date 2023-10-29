@@ -61,7 +61,7 @@
             row2box3 = new TextBox();
             row1box1 = new TextBox();
             row1box2 = new TextBox();
-            btnAutoPlay = new Button();
+            lblWelcome = new Label();
             ((System.ComponentModel.ISupportInitialize)pbTitleImage).BeginInit();
             SuspendLayout();
             // 
@@ -333,24 +333,22 @@
             row1box2.Size = new Size(141, 31);
             row1box2.TabIndex = 67;
             // 
-            // btnAutoPlay
+            // lblWelcome
             // 
-            btnAutoPlay.BackColor = Color.LightCoral;
-            btnAutoPlay.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAutoPlay.Location = new Point(504, 735);
-            btnAutoPlay.Margin = new Padding(4, 5, 4, 5);
-            btnAutoPlay.Name = "btnAutoPlay";
-            btnAutoPlay.Size = new Size(107, 50);
-            btnAutoPlay.TabIndex = 68;
-            btnAutoPlay.Text = "Auto-Play";
-            btnAutoPlay.UseVisualStyleBackColor = false;
+            lblWelcome.AutoSize = true;
+            lblWelcome.ForeColor = SystemColors.ControlDarkDark;
+            lblWelcome.Location = new Point(433, 160);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(276, 25);
+            lblWelcome.TabIndex = 68;
+            lblWelcome.Text = "View the tournament bracket live!";
             // 
             // LiveBracketForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1120, 935);
-            Controls.Add(btnAutoPlay);
+            Controls.Add(lblWelcome);
             Controls.Add(row1box2);
             Controls.Add(row1box1);
             Controls.Add(row2box4);
@@ -427,6 +425,6 @@
         private TextBox row1box1;
         private TextBox row1box2;
         private Button autoBtn;
-        private Button btnAutoPlay;
+        private Label lblWelcome;
     }
 }
