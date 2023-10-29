@@ -150,12 +150,12 @@ namespace Tournament_Tracker
 
         }
 
-        public Match(Team TeamA, Team TeamB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
+        public Match(Team TeamA, Team TeamB, int roundPosition, int roundNumber, int maxRounds = 1, bool playAllRounds = false)
         {
             SetupMatch(TeamA, TeamB, roundPosition, roundNumber, maxRounds, playAllRounds);
         }
 
-        public Match(TournamentRegistration RegistrationA, TournamentRegistration RegistrationB, int roundPosition, int roundNumber, int maxRounds = 3, bool playAllRounds = false)
+        public Match(TournamentRegistration RegistrationA, TournamentRegistration RegistrationB, int roundPosition, int roundNumber, int maxRounds = 1, bool playAllRounds = false)
         {
             SetupMatch(RegistrationA.Team, RegistrationB.Team, roundPosition, roundNumber, maxRounds, playAllRounds);
         }
