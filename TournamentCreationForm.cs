@@ -85,6 +85,7 @@ namespace Tournament_Tracker
             Tournament tournament = new Tournament();
             tournament.TournamentName = tbTournamentName.Text;
 
+            // Create single elim or double elim tournament depending on selection and if name has been inputted.
             if (cbTournamentType.SelectedIndex == 0 && tbTournamentName.Text.Length > 0)
             {
                 WinnersBracket bracket = new WinnersBracket();
@@ -101,6 +102,12 @@ namespace Tournament_Tracker
             {
                 lblError.Visible = true;
                 return;
+            }
+
+            // Add all selected teams to the tournament
+            foreach(Team team in lbTeamFinal.Items)
+            {
+                tournament.RegisterToTournament(team);
             }
 
             DatabaseManager.context.Tournaments.Add(tournament);
