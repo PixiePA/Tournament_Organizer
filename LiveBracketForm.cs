@@ -71,10 +71,16 @@ namespace Tournament_Tracker
         {
 
             
-            List<Match> initialMatches = currentTournament.Bracket.Matches;
+            List<Match> initialMatches = currentTournament.Bracket.Matches.ToList();
             int numOfMatches = initialMatches.Count;
             if(numOfMatches == 8)
             {
+                int count = 0;
+                foreach(Match _match in initialMatches)
+                {
+                    _match[count];
+
+                }
 
             }
             //len.matchesList; // to determine how many boxes are populated

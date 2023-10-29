@@ -100,7 +100,6 @@
             row4box1.Name = "row4box1";
             row4box1.Size = new Size(141, 31);
             row4box1.TabIndex = 37;
-            row4box1.TextChanged += row4box1_TextChanged;
             // 
             // row4box2
             // 
@@ -345,7 +344,6 @@
             btnAutoPlay.TabIndex = 68;
             btnAutoPlay.Text = "Auto-Play";
             btnAutoPlay.UseVisualStyleBackColor = false;
-            btnAutoPlay.Click += btnAutoPlay_Click;
             // 
             // LiveBracketForm
             // 
