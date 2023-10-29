@@ -12,8 +12,6 @@ namespace Tournament_Tracker
     {
         private bool hasLosersBracket;
 
-        public int WinnersBracketID { get => bracketID; set => bracketID = value; }
-
         public bool HasLosersBracket { get => hasLosersBracket; set => hasLosersBracket = value; }
 
         [NotMapped]
