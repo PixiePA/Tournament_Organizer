@@ -69,10 +69,10 @@ namespace Tournament_Tracker
             DatabaseManager.context.TournamentRegistrations.Add(newtournamentRegistration);
             DatabaseManager.Save();
         }
-        //abstract public TournamentType TournamentType { get; }
 
+        public void AddScores()
+        {
 
-
-        //public abstract void PlaySets();
+        }
     }
 }
