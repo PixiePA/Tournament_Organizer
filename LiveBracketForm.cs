@@ -14,92 +14,133 @@ namespace Tournament_Tracker
     {
 
         private Tournament currentTournament;
+        private int numberOfMatches = 0;
         public LiveBracketForm(Tournament currentTournament)
         {
             InitializeComponent();
             this.currentTournament = currentTournament;
-
-            ////List of all teams that are participating in the tournament (can get either 4, 8 or 16 teams)
-            ////get list of teams
-
-            ////populate teams to form
-            //numOfTeams = teams.len();
-            //if (numOfTeams == 4)
-            //{
-            //    row2box1.Text = teams[0].name;
-            //    row2box2.Text = teams[1].name;
-            //    row2box3.Text = teams[2].name;
-            //    row2box4.Text = teams[3].name;
-            //}
-            //else if (numOfTeams == 8)
-            //{
-            //    row3box1.Text = teams[0].name;
-            //    row3box2.Text = teams[1].name;
-            //    row3box3.Text = teams[2].name;
-            //    row3box4.Text = teams[3].name;
-            //    row3box5.Text = teams[4].name;
-            //    row3box6.Text = teams[5].name;
-            //    row3box7.Text = teams[6].name;
-            //    row3box8.Text = teams[7].name;
-            //}
-            //else if (numOfTeams == 16)
-            //{
-            //    row4box1.Text = teams[0].name;
-            //    row4box2.Text = teams[1].name;
-            //    row4box3.Text = teams[2].name;
-            //    row4box4.Text = teams[3].name;
-            //    row4box5.Text = teams[4].name;
-            //    row4box6.Text = teams[5].name;
-            //    row4box7.Text = teams[6].name;
-            //    row4box8.Text = teams[7].name;
-            //    row4box9.Text = teams[8].name;
-            //    row4box10.Text = teams[9].name;
-            //    row4box11.Text = teams[10].name;
-            //    row4box12.Text = teams[11].name;
-            //    row4box13.Text = teams[12].name;
-            //    row4box14.Text = teams[13].name;
-            //    row4box15.Text = teams[14].name;
-            //    row4box16.Text = teams[15].name;
-            //}
-            //else
-            //{
-            //    //error handling for too many players
-            //}
+            LoadMatches();
         }
 
-        private void LoadMatches(Match match)
+        private void LoadMatches()
         {
-
             List<Match> initialMatches = currentTournament.Bracket.Matches.ToList();
             int numOfMatches = initialMatches.Count;
-            if(numOfMatches == 8)
+            if (numOfMatches == 8)
             {
+                numOfMatches = 8;
+                row4box1.Text = initialMatches[0].TeamA.Name;
+                row4box2.Text = initialMatches[0].TeamB.Name;
+                row4box3.Text = initialMatches[1].TeamA.Name;
+                row4box4.Text = initialMatches[1].TeamB.Name;
+                row4box5.Text = initialMatches[2].TeamA.Name;
+                row4box6.Text = initialMatches[2].TeamB.Name;
+                row4box7.Text = initialMatches[3].TeamA.Name;
+                row4box8.Text = initialMatches[3].TeamB.Name;
+                row4box9.Text = initialMatches[4].TeamA.Name;
+                row4box10.Text = initialMatches[4].TeamB.Name;
+                row4box11.Text = initialMatches[5].TeamA.Name;
+                row4box12.Text = initialMatches[5].TeamB.Name;
+                row4box13.Text = initialMatches[6].TeamA.Name;
+                row4box14.Text = initialMatches[6].TeamB.Name;
+                row4box15.Text = initialMatches[7].TeamA.Name;
+                row4box16.Text = initialMatches[7].TeamB.Name;
+            }
+            else if (numOfMatches == 4)
+            {
+                numOfMatches = 4;
+                row3box1.Text = initialMatches[0].TeamA.Name;
+                row3box2.Text = initialMatches[0].TeamB.Name;
+                row3box3.Text = initialMatches[1].TeamA.Name;
+                row3box4.Text = initialMatches[1].TeamB.Name;
+                row3box5.Text = initialMatches[2].TeamA.Name;
+                row3box6.Text = initialMatches[2].TeamB.Name;
+                row3box7.Text = initialMatches[3].TeamA.Name;
+                row3box8.Text = initialMatches[3].TeamB.Name;
 
             }
-            //len.matchesList; // to determine how many boxes are populated
-           // List<Match> Matches
-
-
-            //List<Player> players = team.GetPlayers();
-
-            //foreach (Player player in players)
-            //{
-            //    listBox.Items.Add(player);
-            //}
-
-            //int round = Bracket.CurrentRound.Get;
-            //List<Match> matches = Bracket.AllMatchesInRound(round);
-            //List<Match> allMatchesInRound = matches;
+            else if (numOfMatches == 2)
+            {
+                numOfMatches = 2;
+                row2box1.Text = initialMatches[0].TeamA.Name;
+                row2box2.Text = initialMatches[0].TeamB.Name;
+                row2box3.Text = initialMatches[1].TeamA.Name;
+                row2box4.Text = initialMatches[1].TeamB.Name;
+            }
         }
 
-        private void btnAutoPlay_Click(object sender, EventArgs e)
+        private void UpdateLiveBracket()
         {
-            //auto populate bracket with random winers
+            int round = currentTournament.Bracket.CurrentRound;
+            if (numberOfMatches == 8)
+            {
+                if (round == 1)
+                {
+                    LoadMatches();
+                }
+                else if (round == 2)
+                {
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    row3box1.Text = matchesInRound[0].TeamA.Name;
+                    row3box2.Text = matchesInRound[0].TeamB.Name;
+                    row3box3.Text = matchesInRound[1].TeamA.Name;
+                    row3box4.Text = matchesInRound[1].TeamB.Name;
+                    row3box5.Text = matchesInRound[2].TeamA.Name;
+                    row3box6.Text = matchesInRound[2].TeamB.Name;
+                    row3box7.Text = matchesInRound[3].TeamA.Name;
+                    row3box8.Text = matchesInRound[3].TeamB.Name;
+                }
+                else if (round == 3)
+                {
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    row2box1.Text = matchesInRound[0].TeamA.Name;
+                    row2box2.Text = matchesInRound[0].TeamB.Name;
+                    row2box3.Text = matchesInRound[1].TeamA.Name;
+                    row2box4.Text = matchesInRound[1].TeamB.Name;
+                }
+                else if (round == 4)
+                {
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    row1box1.Text = matchesInRound[0].TeamA.Name;
+                    row1box2.Text = matchesInRound[0].TeamB.Name;
 
-        }
+                }
+            }
+            if (numberOfMatches == 4)
+            {
+                if (round == 1)
+                {
+                    LoadMatches();
+                }
+                else if (round == 2)
+                {
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    row2box1.Text = matchesInRound[0].TeamA.Name;
+                    row2box2.Text = matchesInRound[0].TeamB.Name;
+                    row2box3.Text = matchesInRound[1].TeamA.Name;
+                    row2box4.Text = matchesInRound[1].TeamB.Name;
+                }
+                else if (round == 3)
+                {
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    row1box1.Text = matchesInRound[0].TeamA.Name;
+                    row1box2.Text = matchesInRound[0].TeamB.Name;
 
-        private void row4box1_TextChanged(object sender, EventArgs e)
-        {
+                }
+            }
+            if (numberOfMatches == 2)
+            {
+                if (round == 1)
+                {
+                    LoadMatches();
+                }
+                else if (round == 2)
+                {
+                    List<Match> matchesInRound = currentTournament.Bracket.AllMatchesInRound(round);
+                    row1box1.Text = matchesInRound[0].TeamA.Name;
+                    row1box2.Text = matchesInRound[0].TeamB.Name;
+                }
+            }
 
         }
     }
